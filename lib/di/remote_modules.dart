@@ -3,12 +3,17 @@ import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:get_it/get_it.dart';
-import 'package:smart_home/app_config.dart';
-import 'package:smart_home/data/remote/auth_api.dart';
-import 'package:smart_home/data/remote/handler/api_handler.dart';
-import 'package:smart_home/data/remote/interceptors/auth_interceptor.dart';
-import 'package:smart_home/data/remote/interceptors/error_interceptor.dart';
-import 'package:smart_home/data/remote/module_api.dart';
+import 'package:tlu_students/app_config.dart';
+import 'package:tlu_students/data/remote/auth_api.dart';
+import 'package:tlu_students/data/remote/handler/api_handler.dart';
+import 'package:tlu_students/data/remote/interceptors/auth_interceptor.dart';
+import 'package:tlu_students/data/remote/interceptors/error_interceptor.dart';
+import 'package:tlu_students/data/remote/module_api.dart';
+import 'package:tlu_students/data/remote/messaging_api.dart';
+import 'package:tlu_students/data/remote/news_api.dart';
+
+
+
 
 
 dynamic _parseAndDecode(String response) {
@@ -71,5 +76,9 @@ Future<void> registerRemoteModules(GetIt getIt) async {
     )
     ..registerLazySingleton(
       () => AuthApi(getIt<ApiHandlerImpl>()),
-    );
+    )
+    ..registerLazySingleton(() => MessagingApi(getIt<ApiHandlerImpl>()))
+    ..registerLazySingleton(() => NewsApi(getIt<ApiHandlerImpl>()));
 }
+
+

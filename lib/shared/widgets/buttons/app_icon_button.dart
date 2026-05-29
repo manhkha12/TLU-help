@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:smart_home/shared/extensions/build_context_extension.dart';
-import 'package:smart_home/shared/extensions/color_extension.dart';
-import 'package:smart_home/shared/theme/styles.dart';
-import 'package:smart_home/shared/widgets/app_text.dart';
+import 'package:tlu_students/shared/extensions/build_context_extension.dart';
+import 'package:tlu_students/shared/extensions/color_extension.dart';
+import 'package:tlu_students/shared/theme/styles.dart';
+import 'package:tlu_students/shared/widgets/app_text.dart';
 
 import 'base_button.dart';
 

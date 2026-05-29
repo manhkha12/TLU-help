@@ -1,6 +1,6 @@
 
 
-import 'package:smart_home/features/localization/localizations.dart';
+import 'package:tlu_students/features/localization/localizations.dart';
 
 class Validation {
   Validation();
@@ -16,21 +16,23 @@ class Validation {
     return null;
   }
 
+  static String? validateStudentId(String? value) {
+    if (value == null || value.isEmpty) {
+      return null;
+    }
+    if (!RegExp(r'^[A-Z]').hasMatch(value)) {
+      return 'validate.student_id_uppercase'.tr();
+    }
+    return null;
+  }
+
   static String? validatePass(String? value) {
     if (value == null || value.isEmpty) {
       return null;
     }
-    if (value.isNotEmpty && value.length < 6) {
+    if (value.length < 6) {
       return 'validate.incorrect_pass.password_character'.tr();
     }
-    if (!RegExp(r'[A-Z]').hasMatch(value)) {
-      return 'validate.incorrect_pass.uppercase'.tr();
-    }
-
-    if (!RegExp(r'[!@#\$%^&*(),.?":{}|<>]').hasMatch(value)) {
-      return 'validate.incorrect_pass.specical_character'.tr();
-    }
-
     return null;
   }
 

@@ -24,9 +24,7 @@ mixin _$SignupState {
   bool get isLoading => throw _privateConstructorUsedError;
   bool get isSignupSuccess => throw _privateConstructorUsedError;
 
-  /// Create a copy of SignupState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $SignupStateCopyWith<SignupState> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -57,8 +55,6 @@ class _$SignupStateCopyWithImpl<$Res, $Val extends SignupState>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of SignupState
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -129,8 +125,6 @@ class __$$SignupStateImplCopyWithImpl<$Res>
       _$SignupStateImpl _value, $Res Function(_$SignupStateImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of SignupState
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -234,9 +228,7 @@ class _$SignupStateImpl extends _SignupState {
   int get hashCode => Object.hash(runtimeType, username, email, password,
       fullName, confirmPassword, isLoading, isSignupSuccess);
 
-  /// Create a copy of SignupState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$SignupStateImplCopyWith<_$SignupStateImpl> get copyWith =>
@@ -268,11 +260,8 @@ abstract class _SignupState extends SignupState {
   bool get isLoading;
   @override
   bool get isSignupSuccess;
-
-  /// Create a copy of SignupState
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$SignupStateImplCopyWith<_$SignupStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

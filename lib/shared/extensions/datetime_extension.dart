@@ -53,3 +53,30 @@ extension DateTimeExt on DateTime {
     return weekday % 7;
   }
 }
+
+extension StringTimeExt on String {
+  // Hàm bổ trợ để định dạng giờ từ chuỗi "HH:mm" sang 24h format (HH:mm)
+  String to24hFormat() {
+    try {
+      final parts = split(':');
+      if (parts.length < 2) return this;
+
+      final hour = int.parse(parts[0]).toString().padLeft(2, '0');
+      final minute = parts[1].trim().padLeft(2, '0');
+
+      return '$hour:$minute';
+    } catch (e) {
+      return this;
+    }
+  }
+
+  // Tách lessonSlot "7:00-9:00" thành map chứa startTime và endTime đã format
+  Map<String, String> get splitSlot {
+    final parts = split('-');
+    if (parts.length < 2) return {'start': '--:--', 'end': '--:--'};
+    return {
+      'start': parts[0].trim().to24hFormat(),
+      'end': parts[1].trim().to24hFormat(),
+    };
+  }
+}

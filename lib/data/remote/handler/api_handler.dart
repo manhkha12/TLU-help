@@ -60,16 +60,19 @@ class ApiHandlerImpl implements ApiHandler {
     try {
       return await func();
     } catch (e) {
-      throw _apiErrorToInternalError(e);
+      final internalError = _apiErrorToInternalError(e);
+      throw internalError;
     }
+
   }
 
   dynamic _apiErrorToInternalError(e) {
     if (e is DioException) {
-      return e.error;
+      return e.error ?? e.message ?? 'Unknown API Error';
     }
-    return e;
+    return e ?? 'Unknown Error';
   }
+
 
   @override
   String get baseApiUrl => _dio.options.baseUrl;
@@ -87,7 +90,7 @@ class ApiHandlerImpl implements ApiHandler {
         queryParameters: queryParameters,
         options: options,
       );
-      return resp.data['data'];
+      return resp.data != null && resp.data is Map ? resp.data['data'] : resp.data;
     });
   }
 
@@ -148,7 +151,7 @@ class ApiHandlerImpl implements ApiHandler {
         queryParameters: queryParameters,
         options: options,
       );
-      return resp.data['data'];
+      return resp.data != null && resp.data is Map ? resp.data['data'] : resp.data;
     });
   }
 

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:smart_home/gen/fonts.gen.dart';
-import 'package:smart_home/shared/extensions/build_context_extension.dart';
+import 'package:tlu_students/gen/fonts.gen.dart';
+import 'package:tlu_students/shared/extensions/build_context_extension.dart';
 
 
 class BaseButton extends StatelessWidget {
@@ -42,13 +42,13 @@ class BaseButton extends StatelessWidget {
     final _primaryColor = primaryColor ?? context.colors.primaryButton;
     final _disabledColor = _primaryColor.withOpacity(disableOpacity);
     final _size = Size(width, height);
-    final _elevation = WidgetStateProperty.all(elevation);
-    final _shape = WidgetStateProperty.all(
+    final _elevation = MaterialStateProperty.all(elevation);
+    final _shape = MaterialStateProperty.all(
       RoundedRectangleBorder(
         borderRadius: radius ?? BorderRadius.circular(25),
       ),
     );
-    final _textStyle = WidgetStateProperty.all(const TextStyle(
+    final _textStyle = MaterialStateProperty.all(const TextStyle(
       fontFamily: FontFamily.roboto,
       fontSize: 16,
       fontWeight: FontWeight.w500,
@@ -62,8 +62,8 @@ class BaseButton extends StatelessWidget {
                 .copyWith(
               alignment: alignment,
               elevation: _elevation,
-              side: WidgetStateProperty.resolveWith((states) {
-                if (states.contains(WidgetState.disabled)) {
+              side: MaterialStateProperty.resolveWith((states) {
+                if (states.contains(MaterialState.disabled)) {
                   return borderSide ??
                       BorderSide(width: 1, color: _disabledColor);
                 }
@@ -71,13 +71,13 @@ class BaseButton extends StatelessWidget {
               }),
               shape: _shape,
               textStyle: _textStyle,
-              foregroundColor: WidgetStateProperty.resolveWith((states) {
-                if (states.contains(WidgetState.disabled)) {
+              foregroundColor: MaterialStateProperty.resolveWith((states) {
+                if (states.contains(MaterialState.disabled)) {
                   return _primaryColor.withOpacity(disableOpacity);
                 }
                 return _primaryColor;
               }),
-              backgroundColor: WidgetStateProperty.resolveWith((states) {
+              backgroundColor: MaterialStateProperty.resolveWith((states) {
                 return backgroundColor;
               }),
               splashFactory: InkRipple.splashFactory,
@@ -94,19 +94,19 @@ class BaseButton extends StatelessWidget {
               alignment: alignment,
               elevation: _elevation,
               shape: _shape,
-              foregroundColor: WidgetStateProperty.resolveWith((states) {
-                if (states.contains(WidgetState.disabled)) {
+              foregroundColor: MaterialStateProperty.resolveWith((states) {
+                if (states.contains(MaterialState.disabled)) {
                   return (textStyle?.color ?? context.colors.textPrimary)
                       .withOpacity(disableOpacity);
                 }
                 return textStyle?.color ?? context.colors.textPrimary;
               }),
-              padding: WidgetStateProperty.all(EdgeInsets.zero),
+              padding: MaterialStateProperty.all(EdgeInsets.zero),
               textStyle: _textStyle,
               splashFactory: InkRipple.splashFactory,
               tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-              backgroundColor: WidgetStateProperty.resolveWith((states) {
-                if (states.contains(WidgetState.disabled)) {
+              backgroundColor: MaterialStateProperty.resolveWith((states) {
+                if (states.contains(MaterialState.disabled)) {
                   return _disabledColor;
                 }
                 return _primaryColor;

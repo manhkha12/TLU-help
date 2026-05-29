@@ -1,0 +1,15 @@
+{
+  "dart.flutterSdkPath": ".fvm/versions/3.29.1",
+  "dart.previewFlutterUiGuides": true,
+  "java.configuration.updateBuildConfiguration": "interactive",
+  "search.exclude": {
+    "**/.fvm": true
+  },
+  "files.watcherExclude": {
+    "**/.fvm": true,
+    "**/build": true,
+    "**/.dart_tool": true
+  },
+  "java.jdt.ls.java.home": "/opt/homebrew/opt/openjdk@17",
+  "oracle.java.home": "/opt/homebrew/opt/openjdk@17"
+}

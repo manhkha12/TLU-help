@@ -1,5 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:smart_home/models/user.dart';
+import 'package:tlu_students/models/user.dart';
 
 
 part 'app_state.freezed.dart';
