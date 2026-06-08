@@ -1,0 +1,407 @@
+Analyzing base_common...                                        
+
+warning • The value of the field '_apiHandler' isn't used • lib/data/remote/user_api.dart:5:20 • unused_field
+   info • The local variable '_interceptors' starts with an underscore • lib/di/remote_modules.dart:55:13 • no_leading_underscores_for_local_identifiers
+   info • The local variable '_interceptors' starts with an underscore • lib/di/remote_modules.dart:63:13 • no_leading_underscores_for_local_identifiers
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/features/academic/academic_screen.dart:125:44 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/features/academic/academic_screen.dart:129:41 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/features/academic/academic_screen.dart:190:43 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/features/academic/academic_screen.dart:211:50 • deprecated_member_use
+   info • The variable name '_SubjectTile' isn't a lowerCamelCase identifier • lib/features/academic/academic_screen.dart:237:10 • non_constant_identifier_names
+   info • Don't invoke 'print' in production code • lib/features/academic/cubit/academic_cubit.dart:13:7 • avoid_print
+   info • Don't invoke 'print' in production code • lib/features/academic/cubit/academic_cubit.dart:16:7 • avoid_print
+   info • Don't invoke 'print' in production code • lib/features/academic/cubit/academic_cubit.dart:18:7 • avoid_print
+   info • Don't invoke 'print' in production code • lib/features/academic/cubit/academic_cubit.dart:21:7 • avoid_print
+   info • Don't invoke 'print' in production code • lib/features/academic/cubit/academic_cubit.dart:23:7 • avoid_print
+   info • Don't invoke 'print' in production code • lib/features/academic/cubit/academic_cubit.dart:26:7 • avoid_print
+   info • Don't invoke 'print' in production code • lib/features/academic/cubit/academic_cubit.dart:33:7 • avoid_print
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/features/academic/gpa_trend_chart.dart:18:50 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/features/academic/gpa_trend_chart.dart:21:33 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/features/academic/gpa_trend_chart.dart:48:31 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/features/academic/gpa_trend_chart.dart:104:48 • deprecated_member_use
+   info • Use 'const' with the constructor to improve performance • lib/features/calendar/calendar_cubit/calendar_cubit.dart:7:60 • prefer_const_constructors
+warning • The declaration '_isCurrentTimeInSlot' isn't referenced • lib/features/calendar/calendar_screen.dart:36:8 • unused_element
+   info • 'color' is deprecated and shouldn't be used • lib/features/calendar/calendar_screen.dart:135:41 • deprecated_member_use_from_same_package
+   info • Statements in an if should be enclosed in a block • lib/features/calendar/calendar_screen.dart:209:19 • curly_braces_in_flow_control_structures
+warning • The operand can't be 'null', so the condition is always 'true' • lib/features/calendar/calendar_screen.dart:222:37 • unnecessary_null_comparison
+warning • The operand can't be 'null', so the condition is always 'true' • lib/features/calendar/calendar_screen.dart:222:58 • unnecessary_null_comparison
+warning • The value of the local variable 'monthYear' isn't used • lib/features/calendar/calendar_screen.dart:299:18 • unused_local_variable
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/features/calendar/calendar_screen.dart:306:38 • deprecated_member_use
+   info • Use 'const' with the constructor to improve performance • lib/features/calendar/calendar_screen.dart:308:11 • prefer_const_constructors
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/features/calendar/calendar_screen.dart:413:40 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/features/calendar/calendar_screen.dart:434:32 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/features/calendar/calendar_screen.dart:454:39 • deprecated_member_use
+   info • Use 'const' with the constructor to improve performance • lib/features/calendar/semester_cubit/semester_cubit.dart:7:60 • prefer_const_constructors
+warning • Unused import: 'package:tlu_students/features/chat/inbox_meessed.dart' • lib/features/chat/chat_screen.dart:13:8 • unused_import
+   info • Statements in an if should be enclosed in a block • lib/features/chat/chat_screen.dart:148:31 • curly_braces_in_flow_control_structures
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/features/chat/chat_screen.dart:202:34 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/features/chat/chat_screen.dart:254:30 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/features/chat/chat_screen.dart:262:43 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/features/chat/chat_screen.dart:270:34 • deprecated_member_use
+   info • Use 'const' with the constructor to improve performance • lib/features/chat/chat_screen.dart:327:16 • prefer_const_constructors
+   info • Don't invoke 'print' in production code • lib/features/chat/cubit/chat_cubit.dart:294:7 • avoid_print
+warning • Unused import: 'package:tlu_students/features/chat/models/message_model.dart' • lib/features/chat/inbox_meessed.dart:9:8 • unused_import
+   info • 'onPopInvoked' is deprecated and shouldn't be used. Use onPopInvokedWithResult instead. This feature was deprecated after v3.22.0-12.0.pre • lib/features/chat/inbox_meessed.dart:74:7 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/features/chat/inbox_meessed.dart:90:52 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/features/chat/inbox_meessed.dart:111:54 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/features/chat/inbox_meessed.dart:285:89 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/features/chat/inbox_meessed.dart:300:54 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/features/chat/indicator.dart:66:37 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/features/chat/indicator.dart:96:32 • deprecated_member_use
+warning • The annotation 'JsonKey.new' can only be used on fields or getters • lib/features/chat/models/conversation_model.dart:11:6 • invalid_annotation_target
+warning • The annotation 'JsonKey.new' can only be used on fields or getters • lib/features/chat/models/conversation_model.dart:12:6 • invalid_annotation_target
+warning • The annotation 'JsonKey.new' can only be used on fields or getters • lib/features/chat/models/conversation_model.dart:13:6 • invalid_annotation_target
+warning • The annotation 'JsonKey.new' can only be used on fields or getters • lib/features/chat/models/conversation_model.dart:14:6 • invalid_annotation_target
+warning • The annotation 'JsonKey.new' can only be used on fields or getters • lib/features/chat/models/conversation_model.dart:15:6 • invalid_annotation_target
+warning • The annotation 'JsonKey.new' can only be used on fields or getters • lib/features/chat/models/message_model.dart:18:6 • invalid_annotation_target
+warning • The annotation 'JsonKey.new' can only be used on fields or getters • lib/features/chat/models/message_model.dart:19:6 • invalid_annotation_target
+warning • The annotation 'JsonKey.new' can only be used on fields or getters • lib/features/chat/models/message_model.dart:20:6 • invalid_annotation_target
+warning • The annotation 'JsonKey.new' can only be used on fields or getters • lib/features/chat/models/message_model.dart:21:6 • invalid_annotation_target
+warning • The annotation 'JsonKey.new' can only be used on fields or getters • lib/features/chat/models/message_model.dart:22:6 • invalid_annotation_target
+warning • The annotation 'JsonKey.new' can only be used on fields or getters • lib/features/chat/models/message_model.dart:23:6 • invalid_annotation_target
+warning • The annotation 'JsonKey.new' can only be used on fields or getters • lib/features/chat/models/message_model.dart:24:6 • invalid_annotation_target
+warning • The annotation 'JsonKey.new' can only be used on fields or getters • lib/features/chat/models/user_model.dart:11:6 • invalid_annotation_target
+warning • The annotation 'JsonKey.new' can only be used on fields or getters • lib/features/chat/models/user_model.dart:12:6 • invalid_annotation_target
+warning • The annotation 'JsonKey.new' can only be used on fields or getters • lib/features/chat/models/user_model.dart:13:6 • invalid_annotation_target
+warning • The annotation 'JsonKey.new' can only be used on fields or getters • lib/features/chat/models/user_model.dart:14:6 • invalid_annotation_target
+warning • The annotation 'JsonKey.new' can only be used on fields or getters • lib/features/chat/models/user_model.dart:15:6 • invalid_annotation_target
+warning • The annotation 'JsonKey.new' can only be used on fields or getters • lib/features/chat/models/user_model.dart:16:6 • invalid_annotation_target
+   info • The private field _hasInitializedOnce could be 'final' • lib/features/checkin/checkin_screen.dart:26:8 • prefer_final_fields
+warning • The value of the field '_hasInitializedOnce' isn't used • lib/features/checkin/checkin_screen.dart:26:8 • unused_field
+warning • The value of the local variable 'pos' isn't used • lib/features/checkin/checkin_screen.dart:181:16 • unused_local_variable
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/features/checkin/checkin_screen.dart:230:49 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/features/checkin/checkin_screen.dart:231:48 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/features/checkin/checkin_screen.dart:274:56 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/features/checkin/checkin_screen.dart:291:55 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/features/checkin/checkin_screen.dart:301:57 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/features/checkin/checkin_screen.dart:302:56 • deprecated_member_use
+   info • Use 'const' with the constructor to improve performance • lib/features/checkin/checkin_screen.dart:343:32 • prefer_const_constructors
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/features/checkin/checkin_screen.dart:376:64 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/features/checkin/checkin_screen.dart:421:28 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/features/common/splash_screen.dart:143:37 • deprecated_member_use
+warning • Unused import: 'package:tlu_students/shared/extensions/num_extension.dart' • lib/features/finance/finance_screen.dart:6:8 • unused_import
+   info • Don't use 'BuildContext's across async gaps • lib/features/finance/finance_screen.dart:24:15 • use_build_context_synchronously
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/features/finance/finance_screen.dart:128:42 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/features/finance/finance_screen.dart:130:61 • deprecated_member_use
+warning • Unused import: 'package:tlu_students/shared/extensions/num_extension.dart' • lib/features/finance/tuition_detail_screen.dart:5:8 • unused_import
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/features/finance/tuition_detail_screen.dart:80:34 • deprecated_member_use
+   info • 'color' is deprecated and shouldn't be used • lib/features/home_page/home_page_footer.dart:116:53 • deprecated_member_use_from_same_package
+   info • Use 'const' with the constructor to improve performance • lib/features/home_page/home_page_footer.dart:123:17 • prefer_const_constructors
+   info • 'color' is deprecated and shouldn't be used • lib/features/home_page/home_page_footer.dart:133:27 • deprecated_member_use_from_same_package
+   info • Use 'const' with the constructor to improve performance • lib/features/home_page/home_page_footer.dart:141:17 • prefer_const_constructors
+   info • 'color' is deprecated and shouldn't be used • lib/features/home_page/home_page_footer.dart:151:27 • deprecated_member_use_from_same_package
+   info • Use 'const' with the constructor to improve performance • lib/features/home_page/home_page_footer.dart:161:13 • prefer_const_constructors
+   info • Use 'const' with the constructor to improve performance • lib/features/home_page/home_page_footer.dart:240:13 • prefer_const_constructors
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/features/home_page/home_page_footer.dart:341:22 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/features/home_page/home_page_footer.dart:343:41 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/features/home_page/home_page_footer.dart:347:45 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/features/home_page/home_page_footer.dart:354:43 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/features/home_page/home_page_footer.dart:389:27 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/features/home_page/home_page_footer.dart:436:43 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/features/home_page/home_page_footer.dart:456:53 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/features/home_page/home_page_footer.dart:508:43 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/features/home_page/home_page_footer.dart:516:43 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/features/home_page/home_page_footer.dart:564:30 • deprecated_member_use
+   info • Use 'const' with the constructor to improve performance • lib/features/home_page/home_page_footer.dart:569:13 • prefer_const_constructors
+   info • Use 'const' with the constructor to improve performance • lib/features/home_page/home_page_header.dart:43:25 • prefer_const_constructors
+   info • Use 'const' with the constructor to improve performance • lib/features/home_page/home_page_header.dart:44:25 • prefer_const_constructors
+   info • Use 'const' with the constructor to improve performance • lib/features/home_page/home_page_header.dart:45:26 • prefer_const_constructors
+   info • Use 'const' with the constructor to improve performance • lib/features/home_page/home_page_header.dart:49:20 • prefer_const_constructors
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/features/home_page/home_page_header.dart:65:47 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/features/home_page/home_page_header.dart:71:55 • deprecated_member_use
+   info • Use 'const' with the constructor to improve performance • lib/features/home_page/home_page_header.dart:84:19 • prefer_const_constructors
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/features/home_page/home_page_header.dart:113:43 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/features/home_page/home_page_header.dart:123:51 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/features/home_page/home_page_header.dart:124:50 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/features/home_page/home_page_header.dart:128:62 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/features/home_page/home_page_header.dart:129:47 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/features/home_page/home_page_header.dart:152:50 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/features/home_page/home_page_header.dart:179:38 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/features/home_page/home_page_header.dart:189:64 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/features/home_page/home_page_header.dart:193:42 • deprecated_member_use
+   info • Parameter 'key' could be a super parameter • lib/features/home_page/home_page_header.dart:236:9 • use_super_parameters
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/features/home_page/home_page_header.dart:251:39 • deprecated_member_use
+   info • 'color' is deprecated and shouldn't be used • lib/features/home_page/home_page_header.dart:265:42 • deprecated_member_use_from_same_package
+   info • Use 'const' with the constructor to improve performance • lib/features/home_page/home_page_screen.dart:22:11 • prefer_const_constructors
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/features/home_page/news_card.dart:34:35 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/features/home_page/news_card.dart:67:58 • deprecated_member_use
+   info • The local variable '_isPro' starts with an underscore • lib/features/localization/localization_controller.dart:47:11 • no_leading_underscores_for_local_identifiers
+   info • The local variable '_proJson' starts with an underscore • lib/features/localization/localization_controller.dart:48:26 • no_leading_underscores_for_local_identifiers
+warning • Duplicate import • lib/features/login/login_screen.dart:3:8 • duplicate_import
+warning • Unused import: 'package:tlu_students/shared/utils/validate_form.dart' • lib/features/login/login_screen.dart:10:8 • unused_import
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/features/login/login_screen.dart:96:59 • deprecated_member_use
+   info • 'color' is deprecated and shouldn't be used • lib/features/login/login_screen.dart:156:41 • deprecated_member_use_from_same_package
+warning • Unused import: 'package:tlu_students/features/academic/academic_screen.dart' • lib/features/main_screen.dart:3:8 • unused_import
+warning • Unused import: 'package:tlu_students/shared/widgets/app_text.dart' • lib/features/main_screen.dart:13:8 • unused_import
+warning • Unused import: 'package:tlu_students/shared/widgets/custom_app_bar.dart' • lib/features/main_screen.dart:15:8 • unused_import
+   info • Parameter 'key' could be a super parameter • lib/features/main_screen.dart:19:9 • use_super_parameters
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/features/main_screen.dart:50:35 • deprecated_member_use
+   info • Don't invoke 'print' in production code • lib/features/notification/cubit/notification_cubit.dart:69:7 • avoid_print
+   info • Don't invoke 'print' in production code • lib/features/notification/cubit/notification_cubit.dart:84:7 • avoid_print
+   info • Don't invoke 'print' in production code • lib/features/notification/cubit/notification_cubit.dart:103:7 • avoid_print
+   info • Don't invoke 'print' in production code • lib/features/notification/cubit/notification_cubit.dart:118:7 • avoid_print
+   info • Parameter 'key' could be a super parameter • lib/features/notification/notification_screen.dart:11:9 • use_super_parameters
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/features/notification/notification_screen.dart:124:57 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/features/notification/notification_screen.dart:151:87 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/features/notification/notification_screen.dart:161:64 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/features/notification/notification_screen.dart:161:104 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/features/notification/notification_screen.dart:236:49 • deprecated_member_use
+warning • Unused import: 'package:freezed_annotation/freezed_annotation.dart' • lib/features/profile/cubit/profile_cubit.dart:2:8 • unused_import
+   info • Use 'const' with the constructor to improve performance • lib/features/profile/profile_screen.dart:35:18 • prefer_const_constructors
+   info • Use 'const' with the constructor to improve performance • lib/features/profile/profile_screen.dart:250:13 • prefer_const_constructors
+   info • Use 'const' with the constructor to improve performance • lib/features/profile/profile_screen.dart:251:13 • prefer_const_constructors
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/features/register/register.dart:73:54 • deprecated_member_use
+   info • 'color' is deprecated and shouldn't be used • lib/features/register/register.dart:114:33 • deprecated_member_use_from_same_package
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/features/register/register.dart:114:61 • deprecated_member_use
+   info • 'color' is deprecated and shouldn't be used • lib/features/register/register.dart:137:33 • deprecated_member_use_from_same_package
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/features/register/register.dart:137:61 • deprecated_member_use
+   info • 'color' is deprecated and shouldn't be used • lib/features/register/register.dart:162:33 • deprecated_member_use_from_same_package
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/features/register/register.dart:162:61 • deprecated_member_use
+   info • 'color' is deprecated and shouldn't be used • lib/features/register/register.dart:206:37 • deprecated_member_use_from_same_package
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/features/register/register.dart:207:62 • deprecated_member_use
+   info • 'color' is deprecated and shouldn't be used • lib/features/register/register.dart:233:39 • deprecated_member_use_from_same_package
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/features/register/register.dart:246:55 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/features/register/register.dart:368:51 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/features/service/service_screen.dart:106:33 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/features/service/service_screen.dart:122:54 • deprecated_member_use
+warning • The value of the local variable 'color' isn't used • lib/features/service/service_screen.dart:225:11 • unused_local_variable
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/features/service/service_screen.dart:342:26 • deprecated_member_use
+warning • Unused import: 'package:tlu_students/shared/extensions/extensions.dart' • lib/features/service/widgets/create_request_bottom_sheet.dart:6:8 • unused_import
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/features/service/widgets/request_detail_bottom_sheet.dart:149:22 • deprecated_member_use
+warning • Unused import: 'package:lottie/lottie.dart' • lib/intro/intro_screen.dart:2:8 • unused_import
+   info • Don't use 'BuildContext's across async gaps • lib/intro/intro_screen.dart:36:18 • use_build_context_synchronously
+   info • Don't use 'BuildContext's across async gaps • lib/intro/intro_screen.dart:45:18 • use_build_context_synchronously
+   info • Use 'const' with the constructor to improve performance • lib/intro/intro_screen.dart:113:29 • prefer_const_constructors
+   info • Use 'const' with the constructor to improve performance • lib/intro/intro_screen.dart:121:29 • prefer_const_constructors
+   info • Use 'const' with the constructor to improve performance • lib/intro/intro_screen.dart:129:29 • prefer_const_constructors
+   info • Use 'const' with the constructor to improve performance • lib/intro/intro_screen.dart:135:29 • prefer_const_constructors
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/intro/intro_screen.dart:144:62 • deprecated_member_use
+   info • Use 'const' with the constructor to improve performance • lib/intro/intro_screen.dart:160:35 • prefer_const_constructors
+   info • 'color' is deprecated and shouldn't be used • lib/intro/intro_screen.dart:162:37 • deprecated_member_use_from_same_package
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/intro/intro_screen.dart:163:62 • deprecated_member_use
+   info • Use 'const' with the constructor to improve performance • lib/intro/intro_screen.dart:165:35 • prefer_const_constructors
+   info • Use 'const' with the constructor to improve performance • lib/intro/intro_screen.dart:176:29 • prefer_const_constructors
+   info • Use 'const' with the constructor to improve performance • lib/intro/intro_screen.dart:193:27 • prefer_const_constructors
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/intro/intro_screen.dart:221:64 • deprecated_member_use
+   info • Use 'const' with the constructor to improve performance • lib/intro/intro_screen.dart:230:27 • prefer_const_constructors
+   info • Use 'const' with the constructor to improve performance • lib/intro/intro_screen.dart:239:27 • prefer_const_constructors
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/intro/intro_screen.dart:316:61 • deprecated_member_use
+   info • 'color' is deprecated and shouldn't be used • lib/intro/intro_screen.dart:342:39 • deprecated_member_use_from_same_package
+   info • 'color' is deprecated and shouldn't be used • lib/intro/intro_screen.dart:353:33 • deprecated_member_use_from_same_package
+   info • 'color' is deprecated and shouldn't be used • lib/intro/intro_screen.dart:374:39 • deprecated_member_use_from_same_package
+warning • The declaration '_safeProceed' isn't referenced • lib/main.dart:61:8 • unused_element
+warning • The annotation 'JsonKey.new' can only be used on fields or getters • lib/models/chat_message.dart:10:6 • invalid_annotation_target
+warning • The annotation 'JsonKey.new' can only be used on fields or getters • lib/models/chat_message.dart:11:6 • invalid_annotation_target
+warning • The annotation 'JsonKey.new' can only be used on fields or getters • lib/models/chat_message.dart:12:6 • invalid_annotation_target
+warning • The annotation 'JsonKey.new' can only be used on fields or getters • lib/models/chat_send_response.dart:10:6 • invalid_annotation_target
+warning • The annotation 'JsonKey.new' can only be used on fields or getters • lib/models/chat_session.dart:11:6 • invalid_annotation_target
+warning • The annotation 'JsonKey.new' can only be used on fields or getters • lib/models/chat_session.dart:12:6 • invalid_annotation_target
+warning • The annotation 'JsonKey.new' can only be used on fields or getters • lib/models/chat_session.dart:13:6 • invalid_annotation_target
+warning • The annotation 'JsonKey.new' can only be used on fields or getters • lib/models/chat_session.dart:14:6 • invalid_annotation_target
+warning • The annotation 'JsonKey.new' can only be used on fields or getters • lib/models/course_response.dart:26:6 • invalid_annotation_target
+warning • The annotation 'JsonKey.new' can only be used on fields or getters • lib/models/course_response.dart:27:6 • invalid_annotation_target
+warning • The annotation 'JsonKey.new' can only be used on fields or getters • lib/models/course_response.dart:28:6 • invalid_annotation_target
+warning • The annotation 'JsonKey.new' can only be used on fields or getters • lib/models/course_response.dart:29:6 • invalid_annotation_target
+warning • The annotation 'JsonKey.new' can only be used on fields or getters • lib/models/course_response.dart:33:6 • invalid_annotation_target
+warning • The annotation 'JsonKey.new' can only be used on fields or getters • lib/models/course_response.dart:34:6 • invalid_annotation_target
+warning • The annotation 'JsonKey.new' can only be used on fields or getters • lib/models/course_response.dart:35:6 • invalid_annotation_target
+warning • The annotation 'JsonKey.new' can only be used on fields or getters • lib/models/course_response.dart:36:6 • invalid_annotation_target
+warning • The annotation 'JsonKey.new' can only be used on fields or getters • lib/models/course_response.dart:37:6 • invalid_annotation_target
+warning • The annotation 'JsonKey.new' can only be used on fields or getters • lib/models/course_response.dart:38:6 • invalid_annotation_target
+warning • The annotation 'JsonKey.new' can only be used on fields or getters • lib/models/course_response.dart:39:6 • invalid_annotation_target
+warning • The annotation 'JsonKey.new' can only be used on fields or getters • lib/models/course_response.dart:40:6 • invalid_annotation_target
+warning • The annotation 'JsonKey.new' can only be used on fields or getters • lib/models/course_response.dart:41:6 • invalid_annotation_target
+warning • The annotation 'JsonKey.new' can only be used on fields or getters • lib/models/course_response.dart:45:6 • invalid_annotation_target
+warning • The annotation 'JsonKey.new' can only be used on fields or getters • lib/models/course_response.dart:77:6 • invalid_annotation_target
+warning • The annotation 'JsonKey.new' can only be used on fields or getters • lib/models/course_response.dart:78:6 • invalid_annotation_target
+warning • The annotation 'JsonKey.new' can only be used on fields or getters • lib/models/course_response.dart:79:6 • invalid_annotation_target
+warning • The annotation 'JsonKey.new' can only be used on fields or getters • lib/models/course_response.dart:80:6 • invalid_annotation_target
+warning • The annotation 'JsonKey.new' can only be used on fields or getters • lib/models/course_response.dart:81:6 • invalid_annotation_target
+warning • The annotation 'JsonKey.new' can only be used on fields or getters • lib/models/course_response.dart:82:6 • invalid_annotation_target
+warning • The annotation 'JsonKey.new' can only be used on fields or getters • lib/models/course_response.dart:92:6 • invalid_annotation_target
+warning • The annotation 'JsonKey.new' can only be used on fields or getters • lib/models/course_response.dart:93:6 • invalid_annotation_target
+warning • The annotation 'JsonKey.new' can only be used on fields or getters • lib/models/course_response.dart:104:6 • invalid_annotation_target
+warning • The annotation 'JsonKey.new' can only be used on fields or getters • lib/models/document_type.dart:10:6 • invalid_annotation_target
+warning • The annotation 'JsonKey.new' can only be used on fields or getters • lib/models/document_type.dart:11:6 • invalid_annotation_target
+warning • The annotation 'JsonKey.new' can only be used on fields or getters • lib/models/grade_item.dart:12:6 • invalid_annotation_target
+warning • The annotation 'JsonKey.new' can only be used on fields or getters • lib/models/grade_item.dart:13:6 • invalid_annotation_target
+warning • The annotation 'JsonKey.new' can only be used on fields or getters • lib/models/grade_item.dart:14:6 • invalid_annotation_target
+warning • The annotation 'JsonKey.new' can only be used on fields or getters • lib/models/grade_item.dart:15:6 • invalid_annotation_target
+warning • The annotation 'JsonKey.new' can only be used on fields or getters • lib/models/grade_item.dart:16:6 • invalid_annotation_target
+warning • The annotation 'JsonKey.new' can only be used on fields or getters • lib/models/grade_item.dart:37:6 • invalid_annotation_target
+warning • The annotation 'JsonKey.new' can only be used on fields or getters • lib/models/grade_item.dart:38:6 • invalid_annotation_target
+warning • The annotation 'JsonKey.new' can only be used on fields or getters • lib/models/grade_item.dart:50:6 • invalid_annotation_target
+warning • The annotation 'JsonKey.new' can only be used on fields or getters • lib/models/notification_model.dart:13:6 • invalid_annotation_target
+warning • The annotation 'JsonKey.new' can only be used on fields or getters • lib/models/notification_model.dart:16:6 • invalid_annotation_target
+warning • The annotation 'JsonKey.new' can only be used on fields or getters • lib/models/notification_model.dart:19:6 • invalid_annotation_target
+warning • The annotation 'JsonKey.new' can only be used on fields or getters • lib/models/notification_model.dart:22:6 • invalid_annotation_target
+warning • The annotation 'JsonKey.new' can only be used on fields or getters • lib/models/semester.dart:12:6 • invalid_annotation_target
+warning • The annotation 'JsonKey.new' can only be used on fields or getters • lib/models/semester.dart:13:6 • invalid_annotation_target
+warning • The annotation 'JsonKey.new' can only be used on fields or getters • lib/models/semester_result.dart:12:6 • invalid_annotation_target
+warning • The annotation 'JsonKey.new' can only be used on fields or getters • lib/models/semester_result.dart:13:6 • invalid_annotation_target
+warning • The annotation 'JsonKey.new' can only be used on fields or getters • lib/models/service_request.dart:24:6 • invalid_annotation_target
+warning • The annotation 'JsonKey.new' can only be used on fields or getters • lib/models/service_request.dart:25:6 • invalid_annotation_target
+warning • The '?' is unnecessary because 'dynamic' is nullable without it • lib/models/service_request.dart:25:41 • unnecessary_question_mark
+warning • The annotation 'JsonKey.new' can only be used on fields or getters • lib/models/service_request.dart:28:6 • invalid_annotation_target
+warning • The annotation 'JsonKey.new' can only be used on fields or getters • lib/models/service_request.dart:30:6 • invalid_annotation_target
+warning • The annotation 'JsonKey.new' can only be used on fields or getters • lib/models/service_request.dart:31:6 • invalid_annotation_target
+warning • The annotation 'JsonKey.new' can only be used on fields or getters • lib/models/service_request.dart:32:6 • invalid_annotation_target
+warning • The annotation 'JsonKey.new' can only be used on fields or getters • lib/models/student.dart:10:6 • invalid_annotation_target
+warning • The annotation 'JsonKey.new' can only be used on fields or getters • lib/models/student.dart:11:6 • invalid_annotation_target
+warning • The annotation 'JsonKey.new' can only be used on fields or getters • lib/models/student.dart:12:6 • invalid_annotation_target
+warning • The annotation 'JsonKey.new' can only be used on fields or getters • lib/models/student.dart:15:6 • invalid_annotation_target
+warning • The annotation 'JsonKey.new' can only be used on fields or getters • lib/models/student.dart:16:6 • invalid_annotation_target
+warning • The annotation 'JsonKey.new' can only be used on fields or getters • lib/models/student.dart:18:2 • invalid_annotation_target
+warning • The annotation 'JsonKey.new' can only be used on fields or getters • lib/models/student.dart:21:6 • invalid_annotation_target
+warning • The annotation 'JsonKey.new' can only be used on fields or getters • lib/models/student.dart:22:6 • invalid_annotation_target
+warning • The annotation 'JsonKey.new' can only be used on fields or getters • lib/models/student.dart:23:6 • invalid_annotation_target
+warning • The annotation 'JsonKey.new' can only be used on fields or getters • lib/models/student.dart:24:6 • invalid_annotation_target
+warning • The annotation 'JsonKey.new' can only be used on fields or getters • lib/models/tuition_detail.dart:10:6 • invalid_annotation_target
+warning • The annotation 'JsonKey.new' can only be used on fields or getters • lib/models/tuition_detail.dart:11:6 • invalid_annotation_target
+warning • The annotation 'JsonKey.new' can only be used on fields or getters • lib/models/tuition_detail.dart:12:6 • invalid_annotation_target
+warning • The annotation 'JsonKey.new' can only be used on fields or getters • lib/models/tuition_detail.dart:13:6 • invalid_annotation_target
+warning • The annotation 'JsonKey.new' can only be used on fields or getters • lib/models/tuition_detail.dart:14:6 • invalid_annotation_target
+warning • The annotation 'JsonKey.new' can only be used on fields or getters • lib/models/tuition_detail.dart:24:6 • invalid_annotation_target
+warning • The annotation 'JsonKey.new' can only be used on fields or getters • lib/models/tuition_detail.dart:25:6 • invalid_annotation_target
+warning • The annotation 'JsonKey.new' can only be used on fields or getters • lib/models/tuition_fee.dart:11:6 • invalid_annotation_target
+warning • The annotation 'JsonKey.new' can only be used on fields or getters • lib/models/tuition_fee.dart:12:6 • invalid_annotation_target
+warning • The annotation 'JsonKey.new' can only be used on fields or getters • lib/models/tuition_fee.dart:13:6 • invalid_annotation_target
+warning • The annotation 'JsonKey.new' can only be used on fields or getters • lib/models/tuition_fee.dart:15:6 • invalid_annotation_target
+warning • The annotation 'JsonKey.new' can only be used on fields or getters • lib/models/tuition_fee.dart:16:6 • invalid_annotation_target
+warning • The annotation 'JsonKey.new' can only be used on fields or getters • lib/models/user.dart:9:6 • invalid_annotation_target
+warning • The annotation 'JsonKey.new' can only be used on fields or getters • lib/models/user.dart:10:6 • invalid_annotation_target
+warning • The annotation 'JsonKey.new' can only be used on fields or getters • lib/models/user.dart:11:6 • invalid_annotation_target
+   info • Don't invoke 'print' in production code • lib/repository/auth_repository.dart:19:5 • avoid_print
+   info • Don't invoke 'print' in production code • lib/repository/auth_repository.dart:42:5 • avoid_print
+   info • Don't invoke 'print' in production code • lib/repository/auth_repository.dart:62:2 • avoid_print
+   info • Don't invoke 'print' in production code • lib/repository/auth_repository.dart:67:5 • avoid_print
+warning • Unused import: 'package:flutter/widgets.dart' • lib/repository/module_repository.dart:1:8 • unused_import
+   info • Don't invoke 'print' in production code • lib/repository/module_repository.dart:30:7 • avoid_print
+warning • Unnecessary cast • lib/repository/module_repository.dart:33:34 • unnecessary_cast
+   info • Don't invoke 'print' in production code • lib/repository/module_repository.dart:34:7 • avoid_print
+   info • Don't invoke 'print' in production code • lib/repository/module_repository.dart:38:7 • avoid_print
+   info • Don't invoke 'print' in production code • lib/repository/module_repository.dart:45:7 • avoid_print
+warning • Unnecessary cast • lib/repository/module_repository.dart:47:34 • unnecessary_cast
+   info • Don't invoke 'print' in production code • lib/repository/module_repository.dart:48:7 • avoid_print
+   info • Don't invoke 'print' in production code • lib/repository/module_repository.dart:52:7 • avoid_print
+   info • Don't invoke 'print' in production code • lib/repository/module_repository.dart:59:7 • avoid_print
+   info • Don't invoke 'print' in production code • lib/repository/module_repository.dart:62:7 • avoid_print
+   info • Don't invoke 'print' in production code • lib/repository/module_repository.dart:66:7 • avoid_print
+   info • Don't invoke 'print' in production code • lib/repository/module_repository.dart:73:7 • avoid_print
+   info • Don't invoke 'print' in production code • lib/repository/module_repository.dart:75:7 • avoid_print
+   info • Don't invoke 'print' in production code • lib/repository/module_repository.dart:76:7 • avoid_print
+   info • Don't invoke 'print' in production code • lib/repository/module_repository.dart:81:7 • avoid_print
+   info • Don't invoke 'print' in production code • lib/repository/module_repository.dart:89:7 • avoid_print
+   info • Don't invoke 'print' in production code • lib/repository/module_repository.dart:92:7 • avoid_print
+   info • Don't invoke 'print' in production code • lib/repository/module_repository.dart:96:7 • avoid_print
+   info • Don't invoke 'print' in production code • lib/repository/module_repository.dart:103:7 • avoid_print
+   info • Don't invoke 'print' in production code • lib/repository/module_repository.dart:106:7 • avoid_print
+   info • Don't invoke 'print' in production code • lib/repository/module_repository.dart:110:7 • avoid_print
+   info • Don't invoke 'print' in production code • lib/repository/module_repository.dart:117:7 • avoid_print
+   info • Don't invoke 'print' in production code • lib/repository/module_repository.dart:119:7 • avoid_print
+   info • Don't invoke 'print' in production code • lib/repository/module_repository.dart:121:7 • avoid_print
+   info • Don't invoke 'print' in production code • lib/repository/module_repository.dart:128:7 • avoid_print
+   info • Don't invoke 'print' in production code • lib/repository/module_repository.dart:130:7 • avoid_print
+   info • Don't invoke 'print' in production code • lib/repository/module_repository.dart:132:7 • avoid_print
+   info • Don't invoke 'print' in production code • lib/repository/module_repository.dart:139:7 • avoid_print
+   info • Don't invoke 'print' in production code • lib/repository/module_repository.dart:141:7 • avoid_print
+   info • Don't invoke 'print' in production code • lib/repository/module_repository.dart:143:7 • avoid_print
+   info • Don't invoke 'print' in production code • lib/repository/module_repository.dart:151:7 • avoid_print
+   info • Don't invoke 'print' in production code • lib/repository/module_repository.dart:153:7 • avoid_print
+   info • Don't invoke 'print' in production code • lib/repository/module_repository.dart:155:7 • avoid_print
+   info • Don't invoke 'print' in production code • lib/repository/module_repository.dart:162:7 • avoid_print
+   info • Don't invoke 'print' in production code • lib/repository/module_repository.dart:164:7 • avoid_print
+   info • Don't invoke 'print' in production code • lib/repository/module_repository.dart:166:7 • avoid_print
+   info • Don't invoke 'print' in production code • lib/repository/module_repository.dart:173:7 • avoid_print
+   info • Don't invoke 'print' in production code • lib/repository/module_repository.dart:176:7 • avoid_print
+   info • Don't invoke 'print' in production code • lib/repository/module_repository.dart:180:7 • avoid_print
+   info • Don't invoke 'print' in production code • lib/repository/module_repository.dart:188:7 • avoid_print
+   info • Don't invoke 'print' in production code • lib/repository/module_repository.dart:193:7 • avoid_print
+   info • Don't invoke 'print' in production code • lib/repository/module_repository.dart:197:7 • avoid_print
+   info • Don't invoke 'print' in production code • lib/repository/module_repository.dart:206:7 • avoid_print
+   info • Don't invoke 'print' in production code • lib/repository/module_repository.dart:213:7 • avoid_print
+   info • Don't invoke 'print' in production code • lib/repository/module_repository.dart:217:7 • avoid_print
+   info • Don't invoke 'print' in production code • lib/repository/module_repository.dart:225:7 • avoid_print
+   info • Don't invoke 'print' in production code • lib/repository/module_repository.dart:232:7 • avoid_print
+   info • Don't invoke 'print' in production code • lib/repository/module_repository.dart:236:7 • avoid_print
+   info • Don't invoke 'print' in production code • lib/repository/module_repository.dart:243:7 • avoid_print
+   info • Don't invoke 'print' in production code • lib/repository/module_repository.dart:245:7 • avoid_print
+   info • Don't invoke 'print' in production code • lib/repository/module_repository.dart:247:7 • avoid_print
+   info • Don't invoke 'print' in production code • lib/repository/module_repository.dart:256:7 • avoid_print
+   info • Don't invoke 'print' in production code • lib/repository/module_repository.dart:258:7 • avoid_print
+   info • Don't invoke 'print' in production code • lib/repository/module_repository.dart:261:7 • avoid_print
+   info • Don't invoke 'print' in production code • lib/repository/module_repository.dart:268:7 • avoid_print
+   info • Don't invoke 'print' in production code • lib/repository/module_repository.dart:270:7 • avoid_print
+   info • Don't invoke 'print' in production code • lib/repository/module_repository.dart:273:7 • avoid_print
+   info • Don't invoke 'print' in production code • lib/repository/module_repository.dart:280:7 • avoid_print
+   info • Don't invoke 'print' in production code • lib/repository/module_repository.dart:283:7 • avoid_print
+   info • Don't invoke 'print' in production code • lib/repository/module_repository.dart:286:7 • avoid_print
+   info • Don't invoke 'print' in production code • lib/repository/module_repository.dart:293:7 • avoid_print
+   info • Don't invoke 'print' in production code • lib/repository/module_repository.dart:296:7 • avoid_print
+   info • Don't invoke 'print' in production code • lib/repository/module_repository.dart:299:7 • avoid_print
+   info • Don't invoke 'print' in production code • lib/repository/module_repository.dart:306:7 • avoid_print
+   info • Don't invoke 'print' in production code • lib/repository/module_repository.dart:308:7 • avoid_print
+   info • Don't invoke 'print' in production code • lib/repository/module_repository.dart:310:7 • avoid_print
+   info • Don't invoke 'print' in production code • lib/repository/module_repository.dart:319:7 • avoid_print
+warning • Unnecessary cast • lib/repository/module_repository.dart:321:34 • unnecessary_cast
+   info • Don't invoke 'print' in production code • lib/repository/module_repository.dart:322:7 • avoid_print
+   info • Don't invoke 'print' in production code • lib/repository/module_repository.dart:326:7 • avoid_print
+   info • Don't invoke 'print' in production code • lib/repository/module_repository.dart:333:7 • avoid_print
+   info • Don't invoke 'print' in production code • lib/repository/module_repository.dart:335:7 • avoid_print
+   info • Don't invoke 'print' in production code • lib/repository/module_repository.dart:339:7 • avoid_print
+   info • Don't invoke 'print' in production code • lib/repository/module_repository.dart:346:7 • avoid_print
+   info • Don't invoke 'print' in production code • lib/repository/module_repository.dart:348:7 • avoid_print
+   info • Don't invoke 'print' in production code • lib/repository/module_repository.dart:352:7 • avoid_print
+warning • Unused import: 'dart:io' • lib/repository/user_repository.dart:91:8 • unused_import
+warning • Unused import: 'package:flutter/material.dart' • lib/repository/user_repository.dart:92:8 • unused_import
+warning • Unused import: 'package:tlu_students/features/notification/cubit/notification_cubit.dart' • lib/routes.dart:28:8 • unused_import
+warning • This function has a nullable return type of 'Route<dynamic>?', but ends without returning a value • lib/routes.dart:51:35 • body_might_complete_normally_nullable
+   info • Don't invoke 'print' in production code • lib/services/firebase_messaging_service.dart:41:5 • avoid_print
+   info • Don't invoke 'print' in production code • lib/services/firebase_messaging_service.dart:47:7 • avoid_print
+   info • Don't invoke 'print' in production code • lib/services/firebase_messaging_service.dart:90:7 • avoid_print
+   info • Don't invoke 'print' in production code • lib/services/firebase_messaging_service.dart:95:7 • avoid_print
+   info • Don't invoke 'print' in production code • lib/services/firebase_messaging_service.dart:100:5 • avoid_print
+   info • Don't invoke 'print' in production code • lib/services/firebase_messaging_service.dart:131:5 • avoid_print
+   info • Don't invoke 'print' in production code • lib/services/firebase_messaging_service.dart:146:3 • avoid_print
+   info • Don't invoke 'print' in production code • lib/shared/cubits/app_cubit/app_cubit.dart:61:7 • avoid_print
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/shared/theme/colors.dart:84:43 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/shared/theme/styles.dart:178:46 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/shared/theme/styles.dart:180:47 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/shared/theme/styles.dart:182:45 • deprecated_member_use
+   info • The local variable '_textStyle' starts with an underscore • lib/shared/widgets/app_text.dart:46:15 • no_leading_underscores_for_local_identifiers
+   info • The local variable '_textStyle' starts with an underscore • lib/shared/widgets/app_text_icon.dart:61:15 • no_leading_underscores_for_local_identifiers
+   info • The local variable '_bottom' starts with an underscore • lib/shared/widgets/bottom_navigation/custom_bottom_navigation.dart:108:11 • no_leading_underscores_for_local_identifiers
+   info • The local variable '_items' starts with an underscore • lib/shared/widgets/bottom_navigation/custom_bottom_navigation.dart:109:11 • no_leading_underscores_for_local_identifiers
+   info • The local variable '_item' starts with an underscore • lib/shared/widgets/bottom_navigation/custom_bottom_navigation.dart:140:21 • no_leading_underscores_for_local_identifiers
+   info • The local variable '_isSelected' starts with an underscore • lib/shared/widgets/bottom_navigation/custom_bottom_navigation.dart:141:21 • no_leading_underscores_for_local_identifiers
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/shared/widgets/buttons/app_button.dart:111:22 • deprecated_member_use
+   info • The local variable '_iconColor' starts with an underscore • lib/shared/widgets/buttons/app_icon_button.dart:80:11 • no_leading_underscores_for_local_identifiers
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/shared/widgets/buttons/app_icon_button.dart:118:32 • deprecated_member_use
+   info • The local variable '_primaryColor' starts with an underscore • lib/shared/widgets/buttons/base_button.dart:42:11 • no_leading_underscores_for_local_identifiers
+   info • The local variable '_disabledColor' starts with an underscore • lib/shared/widgets/buttons/base_button.dart:43:11 • no_leading_underscores_for_local_identifiers
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/shared/widgets/buttons/base_button.dart:43:42 • deprecated_member_use
+   info • The local variable '_size' starts with an underscore • lib/shared/widgets/buttons/base_button.dart:44:11 • no_leading_underscores_for_local_identifiers
+   info • The local variable '_elevation' starts with an underscore • lib/shared/widgets/buttons/base_button.dart:45:11 • no_leading_underscores_for_local_identifiers
+   info • 'MaterialStateProperty' is deprecated and shouldn't be used. Use WidgetStateProperty instead. Moved to the Widgets layer to make code available outside of Material. This feature was deprecated after v3.19.0-0.3.pre • lib/shared/widgets/buttons/base_button.dart:45:24 • deprecated_member_use
+   info • The local variable '_shape' starts with an underscore • lib/shared/widgets/buttons/base_button.dart:46:11 • no_leading_underscores_for_local_identifiers
+   info • 'MaterialStateProperty' is deprecated and shouldn't be used. Use WidgetStateProperty instead. Moved to the Widgets layer to make code available outside of Material. This feature was deprecated after v3.19.0-0.3.pre • lib/shared/widgets/buttons/base_button.dart:46:20 • deprecated_member_use
+   info • The local variable '_textStyle' starts with an underscore • lib/shared/widgets/buttons/base_button.dart:51:11 • no_leading_underscores_for_local_identifiers
+   info • 'MaterialStateProperty' is deprecated and shouldn't be used. Use WidgetStateProperty instead. Moved to the Widgets layer to make code available outside of Material. This feature was deprecated after v3.19.0-0.3.pre • lib/shared/widgets/buttons/base_button.dart:51:24 • deprecated_member_use
+   info • 'MaterialStateProperty' is deprecated and shouldn't be used. Use WidgetStateProperty instead. Moved to the Widgets layer to make code available outside of Material. This feature was deprecated after v3.19.0-0.3.pre • lib/shared/widgets/buttons/base_button.dart:65:21 • deprecated_member_use
+   info • 'MaterialState' is deprecated and shouldn't be used. Use WidgetState instead. Moved to the Widgets layer to make code available outside of Material. This feature was deprecated after v3.19.0-0.3.pre • lib/shared/widgets/buttons/base_button.dart:66:37 • deprecated_member_use
+   info • 'MaterialStateProperty' is deprecated and shouldn't be used. Use WidgetStateProperty instead. Moved to the Widgets layer to make code available outside of Material. This feature was deprecated after v3.19.0-0.3.pre • lib/shared/widgets/buttons/base_button.dart:74:32 • deprecated_member_use
+   info • 'MaterialState' is deprecated and shouldn't be used. Use WidgetState instead. Moved to the Widgets layer to make code available outside of Material. This feature was deprecated after v3.19.0-0.3.pre • lib/shared/widgets/buttons/base_button.dart:75:37 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/shared/widgets/buttons/base_button.dart:76:40 • deprecated_member_use
+   info • 'MaterialStateProperty' is deprecated and shouldn't be used. Use WidgetStateProperty instead. Moved to the Widgets layer to make code available outside of Material. This feature was deprecated after v3.19.0-0.3.pre • lib/shared/widgets/buttons/base_button.dart:80:32 • deprecated_member_use
+   info • 'MaterialStateProperty' is deprecated and shouldn't be used. Use WidgetStateProperty instead. Moved to the Widgets layer to make code available outside of Material. This feature was deprecated after v3.19.0-0.3.pre • lib/shared/widgets/buttons/base_button.dart:97:32 • deprecated_member_use
+   info • 'MaterialState' is deprecated and shouldn't be used. Use WidgetState instead. Moved to the Widgets layer to make code available outside of Material. This feature was deprecated after v3.19.0-0.3.pre • lib/shared/widgets/buttons/base_button.dart:98:37 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/shared/widgets/buttons/base_button.dart:100:24 • deprecated_member_use
+   info • 'MaterialStateProperty' is deprecated and shouldn't be used. Use WidgetStateProperty instead. Moved to the Widgets layer to make code available outside of Material. This feature was deprecated after v3.19.0-0.3.pre • lib/shared/widgets/buttons/base_button.dart:104:24 • deprecated_member_use
+   info • 'MaterialStateProperty' is deprecated and shouldn't be used. Use WidgetStateProperty instead. Moved to the Widgets layer to make code available outside of Material. This feature was deprecated after v3.19.0-0.3.pre • lib/shared/widgets/buttons/base_button.dart:108:32 • deprecated_member_use
+   info • 'MaterialState' is deprecated and shouldn't be used. Use WidgetState instead. Moved to the Widgets layer to make code available outside of Material. This feature was deprecated after v3.19.0-0.3.pre • lib/shared/widgets/buttons/base_button.dart:109:37 • deprecated_member_use
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/shared/widgets/custom_app_bar.dart:34:32 • deprecated_member_use
+   info • Invalid use of a private type in a public API • lib/shared/widgets/keyboard_avoider.dart:40:3 • library_private_types_in_public_api
+   info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/shared/widgets/loading_dialog.dart:32:32 • deprecated_member_use
+   info • Invalid use of a private type in a public API • lib/shared/widgets/wave_animation.dart:18:3 • library_private_types_in_public_api
+
+403 issues found. (ran in 7.1s)

@@ -1,6 +1,7 @@
 enum AppExceptionState {
   sessionExpired,
   maintainig,
+  noInternet,
 }
 
 class CurrentAppExceptionState {

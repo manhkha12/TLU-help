@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:smart_home/features/localization/app_localization.dart';
-import 'package:smart_home/features/localization/constants.dart';
-import 'package:smart_home/features/localization/localization_controller.dart';
-import 'package:smart_home/features/localization/localization_utils.dart';
+import 'package:tlu_students/features/localization/app_localization.dart';
+import 'package:tlu_students/features/localization/constants.dart';
+import 'package:tlu_students/features/localization/localization_controller.dart';
+import 'package:tlu_students/features/localization/localization_utils.dart';
 
 
 

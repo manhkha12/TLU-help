@@ -13,6 +13,16 @@ abstract class ColorTheme {
 
   Color blue = const Color(0xff007AFF);
 
+  Color tluBlueColor = const Color(0xff0623A4);
+
+  Color tluLightBlueColor = const Color(0xff0044FF);
+
+  Color tluRedColor = const Color(0xffF32409);
+
+  Color tluWhiteColor = const Color(0xffF5F5F7);
+
+  Color tluIndigoColor = const Color(0xff000066);
+
   Color textTerrary = const Color(0xff8E8E8E);
 
   Color textDisabled = const Color(0xff8D8D8D);
@@ -92,44 +102,44 @@ abstract class ColorTheme {
 
 class LightColorTheme extends ColorTheme {
   @override
-  Color get primaryColor => const Color(0xff4ba269);
+  Color get primaryColor => tluBlueColor;
 
   @override
-  Color get primaryButton => const Color(0xff4ba269);
+  Color get primaryButton => tluBlueColor;
 
   @override
-  MaterialColor get swatches => const MaterialColor(0xff4ba269, {
-        50: Color(0xffe8f5ed),
-        100: Color(0xffc9e7d3),
-        200: Color(0xffa7d7b8),
-        300: Color(0xff85c99c),
-        400: Color(0xff6bbd88),
-        500: Color(0xff53b174),
-        600: Color(0xff4ba269),
-        700: Color(0xff42905d),
-        800: Color(0xff3c7e52),
-        900: Color(0xff305e3f),
+  MaterialColor get swatches => const MaterialColor(0xff0623A4, {
+        50: Color(0xffe1e4f4),
+        100: Color(0xffb5bce4),
+        200: Color(0xff8490d2),
+        300: Color(0xff5263c0),
+        400: Color(0xff2d41b2),
+        500: Color(0xff0623A4),
+        600: Color(0xff051f9c),
+        700: Color(0xff041a92),
+        800: Color(0xff031589),
+        900: Color(0xff010c78),
       });
 
   @override
-  Color get activeSlider => const Color(0xff4ba269);
+  Color get activeSlider => tluBlueColor;
 
   @override
-  Color get cursor => const Color(0xff4ba269);
+  Color get cursor => tluBlueColor;
 
   @override
-  Color get focusedInputBorder => const Color(0xff4ba269);
+  Color get focusedInputBorder => tluBlueColor;
 
   @override
-  Color get highlightTab => const Color(0xff4ba269);
+  Color get highlightTab => tluBlueColor;
 }
 
 class DarkColorTheme extends ColorTheme {
   @override
-  Color get primaryColor => const Color(0xffFFFFFF);
+  Color get primaryColor => tluBlueColor;
 
   @override
-  Color get primaryButton => const Color(0xff4ba269);
+  Color get primaryButton => tluBlueColor;
 
   @override
   Color get primaryBackground => const Color(0xff212121);
@@ -149,14 +159,14 @@ class DarkColorTheme extends ColorTheme {
       });
 
   @override
-  Color get activeSlider => const Color(0xff4ba269);
+  Color get activeSlider => tluBlueColor;
 
   @override
-  Color get cursor => const Color(0xff4ba269);
+  Color get cursor => tluBlueColor;
 
   @override
-  Color get focusedInputBorder => const Color(0xff4ba269);
+  Color get focusedInputBorder => tluBlueColor;
 
   @override
-  Color get highlightTab => const Color(0xff4ba269);
+  Color get highlightTab => tluBlueColor;
 }

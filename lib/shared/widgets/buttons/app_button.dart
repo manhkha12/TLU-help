@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:smart_home/shared/theme/styles.dart';
-import 'package:smart_home/shared/widgets/app_text.dart';
+import 'package:tlu_students/shared/theme/styles.dart';
+import 'package:tlu_students/shared/widgets/app_text.dart';
 
 
 

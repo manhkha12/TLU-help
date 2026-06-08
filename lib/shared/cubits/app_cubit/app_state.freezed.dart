@@ -77,9 +77,6 @@ class _$AppStateCopyWithImpl<$Res, $Val extends AppState>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
-
-  /// Create a copy of AppState
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -96,9 +93,6 @@ class __$$AppStateCheckingImplCopyWithImpl<$Res>
   __$$AppStateCheckingImplCopyWithImpl(_$AppStateCheckingImpl _value,
       $Res Function(_$AppStateCheckingImpl) _then)
       : super(_value, _then);
-
-  /// Create a copy of AppState
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -207,9 +201,6 @@ class __$$AppStateUnAuthorizedImplCopyWithImpl<$Res>
   __$$AppStateUnAuthorizedImplCopyWithImpl(_$AppStateUnAuthorizedImpl _value,
       $Res Function(_$AppStateUnAuthorizedImpl) _then)
       : super(_value, _then);
-
-  /// Create a copy of AppState
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -324,8 +315,6 @@ class __$$AppStateAuthorizedImplCopyWithImpl<$Res>
       $Res Function(_$AppStateAuthorizedImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of AppState
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -339,8 +328,6 @@ class __$$AppStateAuthorizedImplCopyWithImpl<$Res>
     ));
   }
 
-  /// Create a copy of AppState
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $UserCopyWith<$Res> get user {
@@ -374,9 +361,7 @@ class _$AppStateAuthorizedImpl implements _AppStateAuthorized {
   @override
   int get hashCode => Object.hash(runtimeType, user);
 
-  /// Create a copy of AppState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$AppStateAuthorizedImplCopyWith<_$AppStateAuthorizedImpl> get copyWith =>
@@ -457,10 +442,7 @@ abstract class _AppStateAuthorized implements AppState {
       _$AppStateAuthorizedImpl;
 
   User get user;
-
-  /// Create a copy of AppState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$AppStateAuthorizedImplCopyWith<_$AppStateAuthorizedImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

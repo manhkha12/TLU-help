@@ -2,6 +2,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 const String _tokenKey = 'kat_garden.access_token';
 const String _refreshTokenKey = 'kat_garden.refresh_token';
+const String _userIdKey = 'kat_garden.user_id';
+
 
 class AppProvider {
   final SharedPreferences _preferences;
@@ -31,4 +33,16 @@ class AppProvider {
     _refreshToken = value;
     await _preferences.setString(_refreshTokenKey, value ?? '');
   }
+
+  String? _userId;
+
+  String? get userId {
+    return _userId ?? _preferences.getString(_userIdKey);
+  }
+
+  Future<void> setUserId(String? value) async {
+    _userId = value;
+    await _preferences.setString(_userIdKey, value ?? '');
+  }
 }
+

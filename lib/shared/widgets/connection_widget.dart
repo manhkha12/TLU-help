@@ -4,7 +4,7 @@ import 'package:collection/collection.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:smart_home/shared/cubits/socket_cubit/socket_cubit.dart';
+import 'package:tlu_students/shared/cubits/socket_cubit/socket_cubit.dart';
 
 
 class ConnectionWidget extends StatefulWidget {
@@ -42,7 +42,7 @@ class _ConnectionWidgetState extends State<ConnectionWidget> {
             results.equals([ConnectivityResult.bluetooth])) {
           if (hasInternet == true) {
             if (mounted) {
-              // context.read<SocketCubit>().disconnect();
+              context.read<SocketCubit>().disconnect();
             }
             onOffline();
             hasInternet = false;
@@ -51,7 +51,7 @@ class _ConnectionWidgetState extends State<ConnectionWidget> {
           if (hasInternet == false) {
             onOnline();
             if (mounted) {
-              // context.read<SocketCubit>().connect();
+              context.read<SocketCubit>().connect();
             }
           }
           hasInternet = true;

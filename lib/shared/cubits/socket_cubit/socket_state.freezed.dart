@@ -78,9 +78,6 @@ class _$SocketStateCopyWithImpl<$Res, $Val extends SocketState>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
-
-  /// Create a copy of SocketState
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -98,9 +95,6 @@ class __$$SocketConnectingStateImplCopyWithImpl<$Res>
   __$$SocketConnectingStateImplCopyWithImpl(_$SocketConnectingStateImpl _value,
       $Res Function(_$SocketConnectingStateImpl) _then)
       : super(_value, _then);
-
-  /// Create a copy of SocketState
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -210,9 +204,6 @@ class __$$SocketConnectedStateImplCopyWithImpl<$Res>
   __$$SocketConnectedStateImplCopyWithImpl(_$SocketConnectedStateImpl _value,
       $Res Function(_$SocketConnectedStateImpl) _then)
       : super(_value, _then);
-
-  /// Create a copy of SocketState
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -324,9 +315,6 @@ class __$$SocketDisconnectedStateImplCopyWithImpl<$Res>
       _$SocketDisconnectedStateImpl _value,
       $Res Function(_$SocketDisconnectedStateImpl) _then)
       : super(_value, _then);
-
-  /// Create a copy of SocketState
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc

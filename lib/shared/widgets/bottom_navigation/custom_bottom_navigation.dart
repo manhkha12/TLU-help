@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:smart_home/shared/extensions/color_extension.dart';
-
+import 'package:tlu_students/shared/extensions/color_extension.dart';
+import 'package:tlu_students/shared/widgets/app_text.dart';
 
 import 'bottom_navigation_controller.dart';
 
 /// Bottom Navigation Item
 class BottomNavigationItem {
   final String icon;
+  final String label;
   final Widget page;
   final Widget? badge;
 
@@ -17,6 +18,7 @@ class BottomNavigationItem {
   /// [badge] : displaying badge count above of icon
   BottomNavigationItem({
     required this.icon,
+    required this.label,
     required this.page,
     this.badge,
   });
@@ -70,7 +72,8 @@ class BottomNavigation extends StatefulWidget {
   BottomNavigationState createState() => BottomNavigationState();
 }
 
-class BottomNavigationState extends State<BottomNavigation> with SingleTickerProviderStateMixin {
+class BottomNavigationState extends State<BottomNavigation>
+    with SingleTickerProviderStateMixin {
   late TabController _tabController;
   late final BottomNavigationController _controller;
 
@@ -116,8 +119,8 @@ class BottomNavigationState extends State<BottomNavigation> with SingleTickerPro
       bottomNavigationBar: Container(
         height: 55 + _bottom,
         padding: EdgeInsets.only(bottom: _bottom),
-        decoration:
-            (widget.decoration ?? const BoxDecoration()).copyWith(color: widget.backgroundColor),
+        decoration: (widget.decoration ?? const BoxDecoration())
+            .copyWith(color: widget.backgroundColor),
         child: TabBar(
           indicator: BoxDecoration(
             border: Border(
@@ -139,10 +142,11 @@ class BottomNavigationState extends State<BottomNavigation> with SingleTickerPro
               return Tab(
                 iconMargin: widget.iconPadding,
                 icon: Stack(
+                  clipBehavior: Clip.none,
                   children: [
                     SizedBox(
-                      width: 40,
-                      height: 40,
+                      width: 20,
+                      height: 20,
                       child: Center(
                         child: SvgPicture.asset(
                           _item.icon,
@@ -168,7 +172,16 @@ class BottomNavigationState extends State<BottomNavigation> with SingleTickerPro
                       )
                   ],
                 ),
-                child: const SizedBox(),
+                child: AppText(
+                  _item.label,
+                  style: TextStyle(
+                    fontSize: 12, // Bạn có thể tùy chỉnh size
+                    color:
+                        _isSelected ? widget.activeColor : widget.inActiveColor,
+                    fontWeight:
+                        _isSelected ? FontWeight.bold : FontWeight.normal,
+                  ),
+                ),
               );
             },
           ),

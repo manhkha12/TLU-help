@@ -1,6 +1,9 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:smart_home/models/user.dart';
-import 'package:smart_home/repository/auth_repository.dart';
+import 'package:tlu_students/models/user.dart';
+import 'package:tlu_students/repository/auth_repository.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:get_it/get_it.dart';
+import 'package:tlu_students/repository/module_repository.dart';
 
 
 import 'app_state.dart';
@@ -23,7 +26,7 @@ class AppCubit extends Cubit<AppState> {
         return;
       }
       final res = await Future.wait([
-        // authRepository.authToken(),
+        authRepository.authToken(),
         Future.delayed(const Duration(seconds: splashDuration))
       ]);
       for (var e in res) {
@@ -47,7 +50,16 @@ class AppCubit extends Cubit<AppState> {
     emit(AppState.unAuthorized());
   }
 
-  void logout() {
+  void logout() async {
+    try {
+      final token = await FirebaseMessaging.instance.getToken();
+      if (token != null) {
+        final moduleRepository = GetIt.I<ModuleRespository>();
+        await moduleRepository.unregisterFcmToken(token);
+      }
+    } catch (e) {
+      print("Error unregistering FCM token on logout: $e");
+    }
     authRepository.logout();
     unauthorized();
   }

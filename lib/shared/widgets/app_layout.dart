@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:smart_home/shared/extensions/build_context_extension.dart';
+import 'package:tlu_students/shared/extensions/build_context_extension.dart';
 
 
 class AppLayout extends StatelessWidget {

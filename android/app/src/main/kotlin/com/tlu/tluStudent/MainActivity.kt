@@ -1,4 +1,4 @@
-package com.example.smart_home
+package com.tlu.tluStudent
 
 import io.flutter.embedding.android.FlutterActivity
 

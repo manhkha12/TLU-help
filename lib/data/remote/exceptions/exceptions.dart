@@ -18,3 +18,8 @@ class ApiException implements Exception {
     return '$code-$message';
   }
 }
+
+class NoInternetException implements Exception {
+  @override
+  String toString() => 'No internet connection';
+}

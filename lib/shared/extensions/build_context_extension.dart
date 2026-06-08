@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:smart_home/shared/theme/color_provider.dart';
-import 'package:smart_home/shared/theme/colors.dart';
-import 'package:smart_home/shared/widgets/loading_dialog.dart';
+import 'package:tlu_students/shared/theme/color_provider.dart';
+import 'package:tlu_students/shared/theme/colors.dart';
+import 'package:tlu_students/shared/widgets/loading_dialog.dart';
 
 
 extension BuildContextExt on BuildContext {

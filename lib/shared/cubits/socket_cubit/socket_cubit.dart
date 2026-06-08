@@ -1,97 +1,106 @@
-// import 'dart:async';
+import 'dart:async';
 
-// import 'package:flutter/material.dart';
-// import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:tlu_students/repository/user_repository.dart';
 
-// import 'socket_state.dart';
-// export 'socket_state.dart';
+import 'socket_state.dart';
+export 'socket_state.dart';
 
-// class SocketCubit extends Cubit<SocketState> {
-//   final UserRepository userRepository;
+class SocketCubit extends Cubit<SocketState> {
+  final UserRepository userRepository;
 
-//   SocketCubit({
-//     required this.userRepository,
-//   }) : super(SocketState.connecting());
+  SocketCubit({
+    required this.userRepository,
+  }) : super(SocketState.connecting());
 
-//   void connect() {
-//     userRepository.initSocket();
-//     userRepository.socket
-//       ?..on('connect', _onConnect)
-//       ..on('connect_error', _onConnectError)
-//       ..on('disconnect', _onDisConnect)
-//       ..on('error', _onConnectError)
-//       ..on('reconnect', _onReconnect)
-//       ..on('reconnect_attempt', _onReconnect)
-//       ..on('reconnect_failed', _onConnectError)
-//       ..on('reconnect_error', _onConnectError);
-//   }
+  void connect() {
+    disconnect();
+    userRepository.initSocket();
+    userRepository.socket
+      ?..on('connect', _onConnect)
+      ..on('connect_error', _onConnectError)
+      ..on('disconnect', _onDisConnect)
+      ..on('error', _onConnectError)
+      ..on('reconnect', _onReconnect)
+      ..on('reconnect_attempt', _onReconnect)
+      ..on('reconnect_failed', _onConnectError)
+      ..on('reconnect_error', _onConnectError);
+  }
 
-//   void disconnect() {
-//     userRepository.disconnectSocket();
-//     userRepository.socket
-//       ?..off('connect', _onConnect)
-//       ..off('connect_error', _onConnectError)
-//       ..off('disconnect', _onDisConnect)
-//       ..off('error', _onConnectError)
-//       ..off('reconnect', _onReconnect)
-//       ..off('reconnect_attempt', _onReconnect)
-//       ..off('reconnect_failed', _onConnectError)
-//       ..off('reconnect_error', _onConnectError);
-//     userRepository.closeSocket();
-//     emit(SocketState.disconnected());
-//   }
+  void disconnect() {
+    userRepository.disconnectSocket();
+    userRepository.socket
+      ?..off('connect', _onConnect)
+      ..off('connect_error', _onConnectError)
+      ..off('disconnect', _onDisConnect)
+      ..off('error', _onConnectError)
+      ..off('reconnect', _onReconnect)
+      ..off('reconnect_attempt', _onReconnect)
+      ..off('reconnect_failed', _onConnectError)
+      ..off('reconnect_error', _onConnectError);
+    userRepository.closeSocket();
+    emit(SocketState.disconnected());
+  }
 
-//   void _onConnect(dynamic data) {
-//     emit(SocketState.connected());
-//   }
+  void _onConnect(dynamic data) {
+    emit(SocketState.connected());
+  }
 
-//   void _onDisConnect(dynamic data) {
-//     emit(SocketState.disconnected());
-//   }
+  void _onDisConnect(dynamic data) {
+    emit(SocketState.disconnected());
+  }
 
-//   void _onConnectError(dynamic data) {
-//     emit(SocketState.disconnected());
-//   }
+  void _onConnectError(dynamic data) {
+    emit(SocketState.disconnected());
+  }
 
-//   void _onReconnect(dynamic data) {
-//     emit(SocketState.connecting());
-//   }
+  void _onReconnect(dynamic data) {
+    emit(SocketState.connecting());
+  }
+  void joinSession(String sessionId) {
+  userRepository.joinAttendanceSession(sessionId);
+}
 
-//   void reconnect() {
-//     disconnect();
-//     connect();
-//   }
+void leaveSession(String sessionId) {
+  userRepository.leaveAttendanceSession(sessionId);
+}
 
-//   @override
-//   Future<void> close() {
-//     disconnect();
-//     return super.close();
-//   }
-// }
+  void reconnect() {
+    disconnect();
+    connect();
+  }
 
-// mixin SocketMixin<Page extends StatefulWidget> on State<Page> {
-//   late StreamSubscription socketSubscription;
-//   @override
-//   void initState() {
-//     super.initState();
-//     socketSubscription = context.read<SocketCubit>().stream.listen((state) {
-//       state.whenOrNull(
-//         connected: () => onSocketConnected(),
-//         disconnected: () => onSocketDisconnected(),
-//         connecting: () => onSocketConnecting(),
-//       );
-//     });
-//   }
+  @override
+  Future<void> close() {
+    disconnect();
+    return super.close();
+  }
+}
 
-//   void onSocketConnected() {}
+mixin SocketMixin<Page extends StatefulWidget> on State<Page> {
+  late StreamSubscription socketSubscription;
+  @override
+  void initState() {
+    super.initState();
+    socketSubscription = context.read<SocketCubit>().stream.listen((state) {
+      state.whenOrNull(
+        connected: () => onSocketConnected(),
+        disconnected: () => onSocketDisconnected(),
+        connecting: () => onSocketConnecting(),
+      );
+    });
+  }
 
-//   void onSocketDisconnected() {}
+  void onSocketConnected() {}
 
-//   void onSocketConnecting() {}
+  void onSocketDisconnected() {}
 
-//   @override
-//   void dispose() {
-//     socketSubscription.cancel();
-//     super.dispose();
-//   }
-// }
+  void onSocketConnecting() {}
+
+  @override
+  void dispose() {
+    socketSubscription.cancel();
+    super.dispose();
+  }
+}
