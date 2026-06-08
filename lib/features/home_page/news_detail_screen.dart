@@ -40,18 +40,17 @@ class _NewsDetailScreenState extends State<NewsDetailScreen> {
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 0,
+        centerTitle: true,
         leading: IconButton(
           icon: Icon(Icons.arrow_back_ios_new, color: context.colors.black, size: 20),
           onPressed: () => Navigator.pop(context),
         ),
-        title: Center(
-          child: AppText(
-            'Chi tiết tin tức',
-            style: TextStyle(
-              color: context.colors.black,
-              fontSize: 18,
-              fontWeight: FontWeight.bold,
-            ),
+        title: AppText(
+          'Chi tiết tin tức',
+          style: TextStyle(
+            color: context.colors.black,
+            fontSize: 18,
+            fontWeight: FontWeight.bold,
           ),
         ),
       ),

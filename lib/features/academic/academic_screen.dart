@@ -5,6 +5,7 @@ import 'package:tlu_students/features/academic/cubit/academic_cubit.dart';
 import 'package:tlu_students/features/academic/cubit/academic_state.dart';
 import 'package:tlu_students/features/academic/gpa_trend_chart.dart';
 import 'package:tlu_students/models/grade_item.dart';
+import 'package:tlu_students/models/semester_result.dart';
 import 'package:tlu_students/shared/extensions/extensions.dart';
 import 'package:tlu_students/features/localization/localizations.dart';
 
@@ -38,7 +39,7 @@ class _AcademicScreenState extends State<AcademicScreen> {
           'academic.title'.tr(),
           style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
         ),
-        centerTitle: false,
+        centerTitle: true,
         backgroundColor: Colors.white,
         foregroundColor: Colors.black,
         elevation: 0,
@@ -58,8 +59,20 @@ class _AcademicScreenState extends State<AcademicScreen> {
           }
 
           // 3. Trạng thái có dữ liệu
-          final latestGpa = state.semesterResults.isNotEmpty
-              ? state.semesterResults.first.gpaCumulative
+          // Sắp xếp các học kỳ theo thứ tự thời gian (từ cũ nhất đến mới nhất) để vẽ biểu đồ
+          final chronologicalResults = List<SemesterResult>.from(
+              state.semesterResults)
+            ..sort(
+                (a, b) => a.semester.priority.compareTo(b.semester.priority));
+
+          // Sắp xếp các học kỳ theo thứ tự thời gian giảm dần (từ mới nhất đến cũ nhất) để hiển thị trong lịch sử
+          final sortedSemesterResults = List<SemesterResult>.from(
+              state.semesterResults)
+            ..sort(
+                (a, b) => b.semester.priority.compareTo(a.semester.priority));
+
+          final latestGpa = sortedSemesterResults.isNotEmpty
+              ? sortedSemesterResults.first.gpaCumulative
               : 0.0;
 
           final totalCredits = state.gradeItems.fold<int>(
@@ -67,17 +80,11 @@ class _AcademicScreenState extends State<AcademicScreen> {
               (sum, item) =>
                   sum + (item.enrollment.courseClass.subject.credits));
 
-          final gpaHistory = state.semesterResults
-              .map((e) => e.gpaSemester)
-              .toList()
-              .reversed // Đảo ngược để vẽ biểu đồ từ cũ đến mới
-              .toList();
+          final gpaHistory =
+              chronologicalResults.map((e) => e.gpaSemester).toList();
 
-          final semesterNames = state.semesterResults
-              .map((e) => e.semester.semesterName)
-              .toList()
-              .reversed
-              .toList();
+          final semesterNames =
+              chronologicalResults.map((e) => e.semester.semesterName).toList();
 
           return SingleChildScrollView(
             padding: const EdgeInsets.all(20),
@@ -97,27 +104,56 @@ class _AcademicScreenState extends State<AcademicScreen> {
 
                 Text(
                   'academic.semester_history'.tr(),
-                  style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                  style: const TextStyle(
+                      fontSize: 18, fontWeight: FontWeight.bold),
                 ),
                 const SizedBox(height: 10),
 
-                // Hiển thị danh sách môn học thật từ API
-                _buildSemesterSection(
-                  semesterTitle: state.semesterResults.isNotEmpty
-                      ? (state.semesterResults.first.semester.semesterName)
-                      : 'academic.current_semester'.tr(),
-                  semesterGpa: state.semesterResults.isNotEmpty
-                      ? state.semesterResults.first.gpaSemester
-                      : 0.0,
-                  credits: totalCredits,
-                  gradeItems: state.gradeItems,
-                  items: state.gradeItems
-                      .map((item) => _SubjectTile(
-                            context,
-                            item,
-                          ))
-                      .toList(),
-                ),
+                // Hiển thị danh sách môn học thật từ API theo từng học kỳ
+                if (sortedSemesterResults.isEmpty)
+                  _buildSemesterSection(
+                    semesterTitle: 'academic.current_semester'.tr(),
+                    semesterGpa: 0.0,
+                    credits: totalCredits,
+                    gradeItems: state.gradeItems,
+                    items: state.gradeItems
+                        .map((item) => _SubjectTile(
+                              context,
+                              item,
+                            ))
+                        .toList(),
+                  )
+                else
+                  ...sortedSemesterResults.map((result) {
+                    final semesterGradeItems = state.gradeItems.where((item) {
+                      final sem = item.enrollment.courseClass.semester;
+                      if (sem.id != null && result.semester.id != null) {
+                        return sem.id == result.semester.id;
+                      }
+                      return sem.semesterName == result.semester.semesterName &&
+                          sem.academicYear == result.semester.academicYear;
+                    }).toList();
+
+                    final semesterCredits = semesterGradeItems.fold<int>(
+                        0,
+                        (sum, item) =>
+                            sum +
+                            (item.enrollment.courseClass.subject.credits));
+
+                    return _buildSemesterSection(
+                      semesterTitle:
+                          "${result.semester.semesterName} - Năm học ${result.semester.academicYear}",
+                      semesterGpa: result.gpaSemester,
+                      credits: semesterCredits,
+                      gradeItems: semesterGradeItems,
+                      items: semesterGradeItems
+                          .map((item) => _SubjectTile(
+                                context,
+                                item,
+                              ))
+                          .toList(),
+                    );
+                  }).toList(),
               ],
             ),
           );
@@ -229,7 +265,9 @@ class _AcademicScreenState extends State<AcademicScreen> {
                 fontWeight: FontWeight.bold,
                 fontSize: 16,
                 color: Colors.black87)),
-        subtitle: Text('academic.semester_summary'.tr(args: [semesterGpa.toString(), credits.toString()]),
+        subtitle: Text(
+            'academic.semester_summary'
+                .tr(args: [semesterGpa.toString(), credits.toString()]),
             style: TextStyle(
                 color: context.colors.tluBlueColor, // Màu xanh trường
                 fontSize: 13,
@@ -265,7 +303,11 @@ class _AcademicScreenState extends State<AcademicScreen> {
                       style: const TextStyle(
                           fontWeight: FontWeight.w600, fontSize: 14)),
                   const SizedBox(height: 4),
-                  Text('academic.subject_summary'.tr(args: [subject.subjectCode, subject.credits.toString()]),
+                  Text(
+                      'academic.subject_summary'.tr(args: [
+                        subject.subjectCode,
+                        subject.credits.toString()
+                      ]),
                       style: const TextStyle(color: Colors.grey, fontSize: 12)),
                 ],
               ),
@@ -277,7 +319,9 @@ class _AcademicScreenState extends State<AcademicScreen> {
                 fontSize: 15,
                 color: score >= 8.5
                     ? context.colors.tluIndigoColor
-                    : (score >= 7.0 ? context.colors.tluBlueColor : context.colors.tluLightBlueColor),
+                    : (score >= 7.0
+                        ? context.colors.tluBlueColor
+                        : context.colors.tluLightBlueColor),
               ),
             ),
             const SizedBox(width: 8),
@@ -350,16 +394,21 @@ class _AcademicScreenState extends State<AcademicScreen> {
                 ),
               ),
               const SizedBox(height: 16),
-              _buildGradeComponentRow("Chuyên cần", attendance, context.colors.tluBlueColor),
-              _buildGradeComponentRow("Điểm quá trình", process, context.colors.tluLightBlueColor),
-              _buildGradeComponentRow("Điểm thi cuối kỳ", finalExam, context.colors.tluRedColor),
+              _buildGradeComponentRow(
+                  "Chuyên cần", attendance, context.colors.tluBlueColor),
+              _buildGradeComponentRow(
+                  "Điểm quá trình", process, context.colors.tluLightBlueColor),
+              _buildGradeComponentRow(
+                  "Điểm thi cuối kỳ", finalExam, context.colors.tluRedColor),
               const Divider(height: 32),
               _buildGradeComponentRow(
                 "Điểm tổng kết",
                 total,
                 total >= 8.5
                     ? context.colors.tluIndigoColor
-                    : (total >= 7.0 ? context.colors.tluBlueColor : context.colors.tluLightBlueColor),
+                    : (total >= 7.0
+                        ? context.colors.tluBlueColor
+                        : context.colors.tluLightBlueColor),
                 isBold: true,
               ),
               const SizedBox(height: 20),
@@ -370,7 +419,8 @@ class _AcademicScreenState extends State<AcademicScreen> {
     );
   }
 
-  Widget _buildGradeComponentRow(String label, double score, Color color, {bool isBold = false}) {
+  Widget _buildGradeComponentRow(String label, double score, Color color,
+      {bool isBold = false}) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8.0),
       child: Column(
@@ -422,7 +472,8 @@ class SubjectGradesChart extends StatelessWidget {
   Widget build(BuildContext context) {
     if (gradeItems.isEmpty) return const SizedBox.shrink();
 
-    final validItems = gradeItems.where((item) => item.scoreTotal10 != null).toList();
+    final validItems =
+        gradeItems.where((item) => item.scoreTotal10 != null).toList();
     if (validItems.isEmpty) return const SizedBox.shrink();
 
     return Container(
@@ -477,14 +528,17 @@ class SubjectGradesChart extends StatelessWidget {
                 borderData: FlBorderData(show: false),
                 titlesData: FlTitlesData(
                   show: true,
-                  topTitles: const AxisTitles(sideTitles: SideTitles(showTitles: false)),
-                  rightTitles: const AxisTitles(sideTitles: SideTitles(showTitles: false)),
+                  topTitles: const AxisTitles(
+                      sideTitles: SideTitles(showTitles: false)),
+                  rightTitles: const AxisTitles(
+                      sideTitles: SideTitles(showTitles: false)),
                   leftTitles: AxisTitles(
                     sideTitles: SideTitles(
                       showTitles: true,
                       reservedSize: 22,
                       getTitlesWidget: (value, meta) {
-                        if (value == 0 || value > 10) return const SizedBox.shrink();
+                        if (value == 0 || value > 10)
+                          return const SizedBox.shrink();
                         return Text(
                           value.toStringAsFixed(0),
                           style: TextStyle(
@@ -503,7 +557,11 @@ class SubjectGradesChart extends StatelessWidget {
                       getTitlesWidget: (value, meta) {
                         int index = value.toInt();
                         if (index >= 0 && index < validItems.length) {
-                          final code = validItems[index].enrollment.courseClass.subject.subjectCode;
+                          final code = validItems[index]
+                              .enrollment
+                              .courseClass
+                              .subject
+                              .subjectCode;
                           return Padding(
                             padding: const EdgeInsets.only(top: 6.0),
                             child: Text(
@@ -526,7 +584,11 @@ class SubjectGradesChart extends StatelessWidget {
                   touchTooltipData: BarTouchTooltipData(
                     tooltipBgColor: context.colors.tluBlueColor,
                     getTooltipItem: (group, groupIndex, rod, rodIndex) {
-                      final subjectName = validItems[group.x.toInt()].enrollment.courseClass.subject.subjectName;
+                      final subjectName = validItems[group.x.toInt()]
+                          .enrollment
+                          .courseClass
+                          .subject
+                          .subjectName;
                       return BarTooltipItem(
                         "$subjectName\n${rod.toY.toStringAsFixed(2)}",
                         const TextStyle(

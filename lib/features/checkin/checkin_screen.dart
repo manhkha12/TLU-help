@@ -13,7 +13,6 @@ import 'package:tlu_students/features/localization/localizations.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tlu_students/features/checkin/cubit/checkin_cubit.dart';
 import 'package:tlu_students/features/checkin/cubit/checkin_state.dart';
-import 'package:tlu_students/models/course_response.dart';
 import 'package:tlu_students/features/profile/cubit/profile_cubit.dart';
 import 'package:tlu_students/features/profile/cubit/profile_state.dart';
 
@@ -30,7 +29,6 @@ class _CheckinScreenState extends State<CheckinScreen>
   String _status = 'checkin.checking_permissions'.tr();
   bool _isPermissionGranted = false;
   bool _isCameraReady = false;
-  bool _hasInitializedOnce = false;
 
   // Thêm biến kiểm soát luồng quét khuôn mặt (Throttling)
   bool _isProcessingFrame = false;
@@ -43,8 +41,19 @@ class _CheckinScreenState extends State<CheckinScreen>
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      context.read<CheckInCubit>().fetchActiveSession();
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      final cubit = context.read<CheckInCubit>();
+      await cubit.fetchActiveSession();
+      final cameraGranted = await Permission.camera.isGranted;
+      final locationGranted = await Permission.location.isGranted;
+      if (cameraGranted && locationGranted) {
+        if (mounted) {
+          setState(() {
+            _isPermissionGranted = true;
+          });
+        }
+        cubit.checkGPS();
+      }
     });
   }
 
@@ -54,7 +63,12 @@ class _CheckinScreenState extends State<CheckinScreen>
     if (isFocused) {
       // Khi chuyển vào tab này → bật camera
       _startCamera();
-      context.read<CheckInCubit>().fetchActiveSession();
+      final cubit = context.read<CheckInCubit>();
+      cubit.fetchActiveSession().then((_) {
+        if (_isPermissionGranted) {
+          cubit.checkGPS();
+        }
+      });
     } else {
       // Khi rời tab này → tắt camera để tiết kiệm tài nguyên
       _stopCamera();
@@ -99,7 +113,8 @@ class _CheckinScreenState extends State<CheckinScreen>
         _isPermissionGranted = true;
         _status = 'checkin.initializing_camera'.tr();
       });
-      _checkGPS();
+      _startCamera();
+      context.read<CheckInCubit>().checkGPS();
     } else {
       if (!mounted) return;
       setState(() => _status = 'checkin.permission_required'.tr());
@@ -127,7 +142,7 @@ class _CheckinScreenState extends State<CheckinScreen>
       setState(() => _isCameraReady = true);
 
       // TỐI ƯU 2: Bắt đầu luồng quét camera với cơ chế giảm tải
-      _startFaceDetection();
+      // _startFaceDetection(); // Tạm tắt vì chưa có logic ML Kit để tránh lag và hao pin
     } catch (e) {
       if (!mounted) return;
       setState(() => _status = 'checkin.init_error'.tr(args: [e.toString()]));
@@ -164,25 +179,7 @@ class _CheckinScreenState extends State<CheckinScreen>
     });
   }
 
-  Future<void> _checkGPS() async {
-    try {
-      Position pos = await Geolocator.getCurrentPosition(
-          desiredAccuracy: LocationAccuracy.high);
-      // Tọa độ TLU (21.0074, 105.8247)
-      double dist = Geolocator.distanceBetween(
-          21.0074, 105.8247, pos.latitude, pos.longitude);
-
-      if (!mounted) return;
-      setState(() {
-        _status = dist <= 100
-            ? 'common.at_tlu'.tr(args: [dist.toInt().toString()])
-            : 'common.too_far'.tr(args: [dist.toInt().toString()]);
-      });
-    } catch (e) {
-      if (!mounted) return;
-      setState(() => _status = 'checkin.location_error'.tr());
-    }
-  }
+  // GPS checking is now handled by CheckInCubit
 
   Future<void> _handleCheckin() async {
     if (_controller == null || !_controller!.value.isInitialized) return;
@@ -223,23 +220,36 @@ class _CheckinScreenState extends State<CheckinScreen>
       barrierDismissible: false,
       builder: (context) => AlertDialog(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
-        title: Row(
-          children: [
-            Icon(
-              success ? Icons.check_circle : Icons.error,
-              color: success ? Colors.green : Colors.red,
-              size: 28,
-            ),
-            const SizedBox(width: 10),
-            Text(
-              success 
-                ? 'checkin.success_dialog_title'.tr() 
-                : 'checkin.failed_dialog_title'.tr(),
-              style: const TextStyle(fontWeight: FontWeight.bold),
-            ),
-          ],
-        ),
-        content: Text(message),
+        title: success
+            ? null
+            : Row(
+                children: [
+                  const Icon(
+                    Icons.error,
+                    color: Colors.red,
+                    size: 28,
+                  ),
+                  const SizedBox(width: 10),
+                  Text(
+                    'checkin.failed_dialog_title'.tr(),
+                    style: const TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                ],
+              ),
+        content: success
+            ? Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  const SizedBox(height: 10),
+                  Icon(
+                    Icons.check_circle_rounded,
+                    color: Colors.green.shade600,
+                    size: 80,
+                  ),
+                  const SizedBox(height: 10),
+                ],
+              )
+            : Text(message),
         actions: [
           TextButton(
             onPressed: () {
@@ -248,6 +258,7 @@ class _CheckinScreenState extends State<CheckinScreen>
               if (success) {
                 // Refresh session state to show updated state
                 context.read<CheckInCubit>().fetchActiveSession();
+                context.read<CheckInCubit>().checkGPS();
               }
             },
             child: Text('checkin.close'.tr()),
@@ -284,15 +295,16 @@ class _CheckinScreenState extends State<CheckinScreen>
             final courseClass = activeSession?.courseClass;
             final subject = courseClass?.subject;
 
-            final timingStatus = _checkClassTiming(courseClass);
-            final isOccurring = timingStatus['isOccurring'] as bool;
-            final isAllowed = timingStatus['isAllowed'] as bool;
+            final isOccurring = state.isOccurring;
+            final isAllowed = state.isAllowed;
 
             final currentStatus = state.checkinStatus != null
                 ? state.checkinStatus!.tr()
-                : _status;
+                : ((!_isPermissionGranted || !_isCameraReady)
+                    ? _status
+                    : state.locationStatusText);
 
-            final isLocationOk = currentStatus.contains("TLU");
+            final isLocationOk = state.isLocationOk;
             final isSubmitting = state.checkinStatus != null;
 
             return Column(
@@ -431,14 +443,14 @@ class _CheckinScreenState extends State<CheckinScreen>
                                       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
                                       decoration: BoxDecoration(
                                         color: isAllowed
-                                            ? (timingStatus['statusText'] == 'checkin.on_time'.tr()
+                                            ? (state.timingStatusText == 'checkin.on_time'.tr()
                                                 ? Colors.green.withOpacity(0.1)
                                                 : Colors.orange.withOpacity(0.1))
                                             : context.colors.tluRedColor.withOpacity(0.1),
                                         borderRadius: BorderRadius.circular(20),
                                         border: Border.all(
                                           color: isAllowed
-                                              ? (timingStatus['statusText'] == 'checkin.on_time'.tr()
+                                              ? (state.timingStatusText == 'checkin.on_time'.tr()
                                                   ? Colors.green
                                                   : Colors.orange)
                                               : context.colors.tluRedColor,
@@ -450,25 +462,25 @@ class _CheckinScreenState extends State<CheckinScreen>
                                         children: [
                                           Icon(
                                             isAllowed
-                                                ? (timingStatus['statusText'] == 'checkin.on_time'.tr()
+                                                ? (state.timingStatusText == 'checkin.on_time'.tr()
                                                     ? Icons.check_circle_outline
                                                     : Icons.watch_later_outlined)
                                                 : Icons.error_outline,
                                             size: 16,
                                             color: isAllowed
-                                                ? (timingStatus['statusText'] == 'checkin.on_time'.tr()
+                                                ? (state.timingStatusText == 'checkin.on_time'.tr()
                                                     ? Colors.green
                                                     : Colors.orange)
                                                 : context.colors.tluRedColor,
                                           ),
                                           const SizedBox(width: 6),
                                           AppText(
-                                            timingStatus['statusText'],
+                                            state.timingStatusText,
                                             style: TextStyle(
                                               fontSize: 13,
                                               fontWeight: FontWeight.bold,
                                               color: isAllowed
-                                                  ? (timingStatus['statusText'] == 'checkin.on_time'.tr()
+                                                  ? (state.timingStatusText == 'checkin.on_time'.tr()
                                                       ? Colors.green
                                                       : Colors.orange)
                                                   : context.colors.tluRedColor,
@@ -515,9 +527,9 @@ class _CheckinScreenState extends State<CheckinScreen>
                                     height: context.height * 0.065,
                                     child: ElevatedButton.icon(
                                       onPressed: _isCameraReady &&
-                                              _status.contains("TLU") &&
+                                              state.isLocationOk &&
                                               activeSession != null &&
-                                              isAllowed &&
+                                              state.isAllowed &&
                                               state.checkinStatus == null
                                           ? _handleCheckin
                                           : null,
@@ -636,94 +648,7 @@ class _CheckinScreenState extends State<CheckinScreen>
     );
   }
 
-  Map<String, dynamic> _checkClassTiming(CourseData? course) {
-    if (course == null) {
-      return {
-        'isOccurring': false,
-        'isAllowed': false,
-        'statusText': 'checkin.no_class_scheduled'.tr(),
-      };
-    }
-
-    final now = DateTime.now();
-
-    // Parse lessonSlot: e.g. "15:00 - 17:00" or "7:00 - 9:00" or similar
-    final timeRange = course.lessonSlot.split('-');
-    if (timeRange.length < 2) {
-      return {
-        'isOccurring': false,
-        'isAllowed': false,
-        'statusText': 'checkin.invalid_time_slot'.tr(),
-      };
-    }
-
-    final startStr = timeRange[0].trim();
-    final endStr = timeRange[1].trim();
-
-    final startTimeOfDay = _parseTimeOfDay(startStr);
-    final endTimeOfDay = _parseTimeOfDay(endStr);
-
-    if (startTimeOfDay == null || endTimeOfDay == null) {
-      return {
-        'isOccurring': false,
-        'isAllowed': false,
-        'statusText': 'checkin.invalid_time_slot'.tr(),
-      };
-    }
-
-    // Construct DateTime objects for start and end times today
-    final classStart = DateTime(now.year, now.month, now.day, startTimeOfDay.hour, startTimeOfDay.minute);
-    final classEnd = DateTime(now.year, now.month, now.day, endTimeOfDay.hour, endTimeOfDay.minute);
-
-    final isOccurring = (now.isAfter(classStart) || now.isAtSameMomentAs(classStart)) && now.isBefore(classEnd);
-
-    if (!isOccurring) {
-      return {
-        'isOccurring': false,
-        'isAllowed': false,
-        'statusText': 'checkin.no_class_scheduled'.tr(),
-      };
-    }
-
-    // Class is occurring. Now check check-in time limits:
-    // - On-time: first 15 minutes (from classStart to classStart + 15 mins)
-    // - Late: next 15 minutes (from classStart + 15 mins to classStart + 30 mins)
-    // - Expired: after classStart + 30 mins
-    final diffMinutes = now.difference(classStart).inMinutes;
-
-    if (diffMinutes >= 0 && diffMinutes <= 15) {
-      return {
-        'isOccurring': true,
-        'isAllowed': true,
-        'statusText': 'checkin.on_time'.tr(),
-      };
-    } else if (diffMinutes > 15 && diffMinutes <= 30) {
-      return {
-        'isOccurring': true,
-        'isAllowed': true,
-        'statusText': 'checkin.late'.tr(),
-      };
-    } else {
-      return {
-        'isOccurring': true,
-        'isAllowed': false,
-        'statusText': 'checkin.expired'.tr(),
-      };
-    }
-  }
-
-  TimeOfDay? _parseTimeOfDay(String timeStr) {
-    try {
-      final cleanStr = timeStr.replaceAll('h', ':').trim();
-      final parts = cleanStr.split(':');
-      if (parts.length < 2) return null;
-      final hour = int.parse(parts[0].trim());
-      final minute = int.parse(parts[1].trim());
-      return TimeOfDay(hour: hour, minute: minute);
-    } catch (_) {
-      return null;
-    }
-  }
+  // Timing check is now handled by CheckInCubit
 }
 
 class BoxView extends StatelessWidget {

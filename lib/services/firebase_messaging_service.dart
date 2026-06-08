@@ -2,6 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:toastification/toastification.dart';
 import 'package:tlu_students/features/notification/cubit/notification_cubit.dart';
 import 'dart:io';
@@ -29,7 +30,23 @@ class FirebaseMessagingService {
   Future<void> init(GlobalKey<NavigatorState> navigatorKey) async {
     _navigatorKey = navigatorKey;
 
-    // 1. Xin quyền nhận thông báo (đặc biệt cần thiết trên iOS)
+    // Khởi tạo và đăng ký Notification Channel cho Android
+    final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
+        FlutterLocalNotificationsPlugin();
+
+    const AndroidNotificationChannel channel = AndroidNotificationChannel(
+      'default', // Khớp với channelId 'default' từ Backend gửi sang
+      'Thông báo hệ thống', // Tên hiển thị trong cài đặt của điện thoại
+      description: 'Kênh nhận thông báo mặc định từ hệ thống',
+      importance: Importance.max, // Hiển thị dạng heads-up banner khi nhận thông báo
+      playSound: true,
+    );
+
+    await flutterLocalNotificationsPlugin
+        .resolvePlatformSpecificImplementation<AndroidFlutterLocalNotificationsPlugin>()
+        ?.createNotificationChannel(channel);
+
+    // 1. Xin quyền nhận thông báo (đặc biệt cần thiết trên iOS và Android 13+)
     NotificationSettings settings = await _fcm.requestPermission(
       alert: true,
       announcement: false,

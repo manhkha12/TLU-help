@@ -33,9 +33,12 @@ class _NotificationScreenState extends State<NotificationScreen> {
   }
 
   void _onScroll() {
+    final cubit = context.read<NotificationCubit>();
+    if (cubit.state.isLoading || cubit.state.isLoadingMore || cubit.state.hasReachedMax) return;
+
     if (_scrollController.position.pixels >=
         _scrollController.position.maxScrollExtent - 200) {
-      context.read<NotificationCubit>().getNotifications(isLoadMore: true);
+      cubit.getNotifications(isLoadMore: true);
     }
   }
 

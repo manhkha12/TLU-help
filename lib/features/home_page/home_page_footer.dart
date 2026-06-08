@@ -216,34 +216,34 @@ class _HomePageFooterState extends State<HomePageFooter> {
                   // Thêm một dòng sub-text nhỏ để làm UI đầy đặn hơn (optional)
                 ),
                 // Nút View all được bọc trong InkWell để có hiệu ứng phản hồi khi chạm
-                InkWell(
-                  onTap: () {
-                    // Điều hướng đến trang tin tức
-                  },
-                  borderRadius: BorderRadius.circular(8),
-                  child: Padding(
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-                    child: Row(
-                      children: [
-                        AppText(
-                          'home.footer.view_all'.tr(),
-                          style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w600,
-                            color: context.colors.tluBlueColor,
-                          ),
-                        ),
-                        const SizedBox(width: 4),
-                        Icon(
-                          Icons.arrow_forward_ios_rounded,
-                          size: 12,
-                          color: context.colors.tluBlueColor,
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
+                //     InkWell(
+                //       onTap: () {
+                //         // Điều hướng đến trang tin tức
+                //       },
+                //       borderRadius: BorderRadius.circular(8),
+                //       child: Padding(
+                //         padding:
+                //             const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                //         child: Row(
+                //           children: [
+                //             AppText(
+                //               'home.footer.view_all'.tr(),
+                //               style: TextStyle(
+                //                 fontSize: 16,
+                //                 fontWeight: FontWeight.w600,
+                //                 color: context.colors.tluBlueColor,
+                //               ),
+                //             ),
+                //             const SizedBox(width: 4),
+                //             Icon(
+                //               Icons.arrow_forward_ios_rounded,
+                //               size: 12,
+                //               color: context.colors.tluBlueColor,
+                //             ),
+                //           ],
+                //         ),
+                //       ),
+                //     ),
               ],
             ),
             const SizedBox(height: 16),

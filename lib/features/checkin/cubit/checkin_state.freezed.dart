@@ -30,6 +30,12 @@ mixin _$CheckInState {
   String? get filePath => throw _privateConstructorUsedError;
   double? get latitude => throw _privateConstructorUsedError;
   double? get longitude => throw _privateConstructorUsedError;
+  bool get isOccurring => throw _privateConstructorUsedError;
+  bool get isAllowed => throw _privateConstructorUsedError;
+  String get timingStatusText => throw _privateConstructorUsedError;
+  bool get isLocationOk => throw _privateConstructorUsedError;
+  double? get gpsDistance => throw _privateConstructorUsedError;
+  String get locationStatusText => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $CheckInStateCopyWith<CheckInState> get copyWith =>
@@ -53,7 +59,13 @@ abstract class $CheckInStateCopyWith<$Res> {
       String? checkinMessage,
       String? filePath,
       double? latitude,
-      double? longitude});
+      double? longitude,
+      bool isOccurring,
+      bool isAllowed,
+      String timingStatusText,
+      bool isLocationOk,
+      double? gpsDistance,
+      String locationStatusText});
 
   $AttendanceSessionCopyWith<$Res>? get activeSession;
 }
@@ -82,6 +94,12 @@ class _$CheckInStateCopyWithImpl<$Res, $Val extends CheckInState>
     Object? filePath = freezed,
     Object? latitude = freezed,
     Object? longitude = freezed,
+    Object? isOccurring = null,
+    Object? isAllowed = null,
+    Object? timingStatusText = null,
+    Object? isLocationOk = null,
+    Object? gpsDistance = freezed,
+    Object? locationStatusText = null,
   }) {
     return _then(_value.copyWith(
       isLoading: null == isLoading
@@ -128,6 +146,30 @@ class _$CheckInStateCopyWithImpl<$Res, $Val extends CheckInState>
           ? _value.longitude
           : longitude // ignore: cast_nullable_to_non_nullable
               as double?,
+      isOccurring: null == isOccurring
+          ? _value.isOccurring
+          : isOccurring // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isAllowed: null == isAllowed
+          ? _value.isAllowed
+          : isAllowed // ignore: cast_nullable_to_non_nullable
+              as bool,
+      timingStatusText: null == timingStatusText
+          ? _value.timingStatusText
+          : timingStatusText // ignore: cast_nullable_to_non_nullable
+              as String,
+      isLocationOk: null == isLocationOk
+          ? _value.isLocationOk
+          : isLocationOk // ignore: cast_nullable_to_non_nullable
+              as bool,
+      gpsDistance: freezed == gpsDistance
+          ? _value.gpsDistance
+          : gpsDistance // ignore: cast_nullable_to_non_nullable
+              as double?,
+      locationStatusText: null == locationStatusText
+          ? _value.locationStatusText
+          : locationStatusText // ignore: cast_nullable_to_non_nullable
+              as String,
     ) as $Val);
   }
 
@@ -163,7 +205,13 @@ abstract class _$$CheckInStateImplCopyWith<$Res>
       String? checkinMessage,
       String? filePath,
       double? latitude,
-      double? longitude});
+      double? longitude,
+      bool isOccurring,
+      bool isAllowed,
+      String timingStatusText,
+      bool isLocationOk,
+      double? gpsDistance,
+      String locationStatusText});
 
   @override
   $AttendanceSessionCopyWith<$Res>? get activeSession;
@@ -191,6 +239,12 @@ class __$$CheckInStateImplCopyWithImpl<$Res>
     Object? filePath = freezed,
     Object? latitude = freezed,
     Object? longitude = freezed,
+    Object? isOccurring = null,
+    Object? isAllowed = null,
+    Object? timingStatusText = null,
+    Object? isLocationOk = null,
+    Object? gpsDistance = freezed,
+    Object? locationStatusText = null,
   }) {
     return _then(_$CheckInStateImpl(
       isLoading: null == isLoading
@@ -237,6 +291,30 @@ class __$$CheckInStateImplCopyWithImpl<$Res>
           ? _value.longitude
           : longitude // ignore: cast_nullable_to_non_nullable
               as double?,
+      isOccurring: null == isOccurring
+          ? _value.isOccurring
+          : isOccurring // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isAllowed: null == isAllowed
+          ? _value.isAllowed
+          : isAllowed // ignore: cast_nullable_to_non_nullable
+              as bool,
+      timingStatusText: null == timingStatusText
+          ? _value.timingStatusText
+          : timingStatusText // ignore: cast_nullable_to_non_nullable
+              as String,
+      isLocationOk: null == isLocationOk
+          ? _value.isLocationOk
+          : isLocationOk // ignore: cast_nullable_to_non_nullable
+              as bool,
+      gpsDistance: freezed == gpsDistance
+          ? _value.gpsDistance
+          : gpsDistance // ignore: cast_nullable_to_non_nullable
+              as double?,
+      locationStatusText: null == locationStatusText
+          ? _value.locationStatusText
+          : locationStatusText // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -255,7 +333,13 @@ class _$CheckInStateImpl extends _CheckInState {
       this.checkinMessage,
       this.filePath,
       this.latitude,
-      this.longitude})
+      this.longitude,
+      this.isOccurring = false,
+      this.isAllowed = false,
+      this.timingStatusText = 'checkin.no_class_scheduled',
+      this.isLocationOk = false,
+      this.gpsDistance,
+      this.locationStatusText = 'checkin.checking_permissions'})
       : _records = records,
         super._();
 
@@ -293,10 +377,27 @@ class _$CheckInStateImpl extends _CheckInState {
   final double? latitude;
   @override
   final double? longitude;
+  @override
+  @JsonKey()
+  final bool isOccurring;
+  @override
+  @JsonKey()
+  final bool isAllowed;
+  @override
+  @JsonKey()
+  final String timingStatusText;
+  @override
+  @JsonKey()
+  final bool isLocationOk;
+  @override
+  final double? gpsDistance;
+  @override
+  @JsonKey()
+  final String locationStatusText;
 
   @override
   String toString() {
-    return 'CheckInState(isLoading: $isLoading, isRefreshing: $isRefreshing, records: $records, currentSessionId: $currentSessionId, activeSession: $activeSession, checkinStatus: $checkinStatus, checkinSuccess: $checkinSuccess, checkinMessage: $checkinMessage, filePath: $filePath, latitude: $latitude, longitude: $longitude)';
+    return 'CheckInState(isLoading: $isLoading, isRefreshing: $isRefreshing, records: $records, currentSessionId: $currentSessionId, activeSession: $activeSession, checkinStatus: $checkinStatus, checkinSuccess: $checkinSuccess, checkinMessage: $checkinMessage, filePath: $filePath, latitude: $latitude, longitude: $longitude, isOccurring: $isOccurring, isAllowed: $isAllowed, timingStatusText: $timingStatusText, isLocationOk: $isLocationOk, gpsDistance: $gpsDistance, locationStatusText: $locationStatusText)';
   }
 
   @override
@@ -324,7 +425,19 @@ class _$CheckInStateImpl extends _CheckInState {
             (identical(other.latitude, latitude) ||
                 other.latitude == latitude) &&
             (identical(other.longitude, longitude) ||
-                other.longitude == longitude));
+                other.longitude == longitude) &&
+            (identical(other.isOccurring, isOccurring) ||
+                other.isOccurring == isOccurring) &&
+            (identical(other.isAllowed, isAllowed) ||
+                other.isAllowed == isAllowed) &&
+            (identical(other.timingStatusText, timingStatusText) ||
+                other.timingStatusText == timingStatusText) &&
+            (identical(other.isLocationOk, isLocationOk) ||
+                other.isLocationOk == isLocationOk) &&
+            (identical(other.gpsDistance, gpsDistance) ||
+                other.gpsDistance == gpsDistance) &&
+            (identical(other.locationStatusText, locationStatusText) ||
+                other.locationStatusText == locationStatusText));
   }
 
   @override
@@ -340,7 +453,13 @@ class _$CheckInStateImpl extends _CheckInState {
       checkinMessage,
       filePath,
       latitude,
-      longitude);
+      longitude,
+      isOccurring,
+      isAllowed,
+      timingStatusText,
+      isLocationOk,
+      gpsDistance,
+      locationStatusText);
 
   @JsonKey(ignore: true)
   @override
@@ -361,7 +480,13 @@ abstract class _CheckInState extends CheckInState {
       final String? checkinMessage,
       final String? filePath,
       final double? latitude,
-      final double? longitude}) = _$CheckInStateImpl;
+      final double? longitude,
+      final bool isOccurring,
+      final bool isAllowed,
+      final String timingStatusText,
+      final bool isLocationOk,
+      final double? gpsDistance,
+      final String locationStatusText}) = _$CheckInStateImpl;
   _CheckInState._() : super._();
 
   @override
@@ -386,6 +511,18 @@ abstract class _CheckInState extends CheckInState {
   double? get latitude;
   @override
   double? get longitude;
+  @override
+  bool get isOccurring;
+  @override
+  bool get isAllowed;
+  @override
+  String get timingStatusText;
+  @override
+  bool get isLocationOk;
+  @override
+  double? get gpsDistance;
+  @override
+  String get locationStatusText;
   @override
   @JsonKey(ignore: true)
   _$$CheckInStateImplCopyWith<_$CheckInStateImpl> get copyWith =>

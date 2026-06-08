@@ -1,8 +1,9 @@
-import 'dart:developer';
 import 'package:dio/dio.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:geolocator/geolocator.dart';
+import 'package:tlu_students/app_config.dart';
 import 'package:tlu_students/features/checkin/cubit/checkin_state.dart';
-import 'package:tlu_students/models/attendance_record.dart';
+import 'package:tlu_students/features/localization/translate_extension.dart';
 import 'package:tlu_students/repository/user_repository.dart';
 import 'package:tlu_students/repository/module_repository.dart';
 
@@ -145,8 +146,130 @@ class CheckInCubit extends Cubit<CheckInState> {
       if (session != null) {
         joinSession(session.id);
       }
+      updateTimingStatus();
     } catch (e) {
       emit(state.copyWith(isLoading: false));
+    }
+  }
+
+  Future<void> checkGPS() async {
+    try {
+      Position pos = await Geolocator.getCurrentPosition(
+          desiredAccuracy: LocationAccuracy.high);
+      
+      updateCheckinData(latitude: pos.latitude, longitude: pos.longitude);
+      
+      final activeSession = state.activeSession;
+      final courseClass = activeSession?.courseClass;
+      
+      final targetLat = courseClass?.latitude ?? AppConfig.defaultLatitude;
+      final targetLng = courseClass?.longitude ?? AppConfig.defaultLongitude;
+      final targetRadius = courseClass?.allowedRadius ?? AppConfig.defaultAllowedRadius;
+      
+      double dist = Geolocator.distanceBetween(
+          targetLat, targetLng, pos.latitude, pos.longitude);
+      
+      final isLocationOk = dist <= targetRadius;
+      
+      emit(state.copyWith(
+        isLocationOk: isLocationOk,
+        gpsDistance: dist,
+        locationStatusText: isLocationOk
+            ? 'common.at_tlu'.tr(args: [dist.toInt().toString()])
+            : 'common.too_far'.tr(args: [dist.toInt().toString()]),
+      ));
+    } catch (e) {
+      emit(state.copyWith(
+        isLocationOk: false,
+        locationStatusText: 'checkin.location_error'.tr(),
+      ));
+    }
+  }
+
+  void updateTimingStatus() {
+    final course = state.activeSession?.courseClass;
+    if (course == null) {
+      emit(state.copyWith(
+        isOccurring: false,
+        isAllowed: false,
+        timingStatusText: 'checkin.no_class_scheduled'.tr(),
+      ));
+      return;
+    }
+
+    final now = DateTime.now();
+    final timeRange = course.lessonSlot.split('-');
+    if (timeRange.length < 2) {
+      emit(state.copyWith(
+        isOccurring: false,
+        isAllowed: false,
+        timingStatusText: 'checkin.invalid_time_slot'.tr(),
+      ));
+      return;
+    }
+
+    final startStr = timeRange[0].trim();
+    final endStr = timeRange[1].trim();
+
+    final startTime = _parseTime(startStr);
+    final endTime = _parseTime(endStr);
+
+    if (startTime == null || endTime == null) {
+      emit(state.copyWith(
+        isOccurring: false,
+        isAllowed: false,
+        timingStatusText: 'checkin.invalid_time_slot'.tr(),
+      ));
+      return;
+    }
+
+    final classStart = DateTime(now.year, now.month, now.day, startTime['hour']!, startTime['minute']!);
+    final classEnd = DateTime(now.year, now.month, now.day, endTime['hour']!, endTime['minute']!);
+
+    final isOccurring = (now.isAfter(classStart) || now.isAtSameMomentAs(classStart)) && now.isBefore(classEnd);
+
+    if (!isOccurring) {
+      emit(state.copyWith(
+        isOccurring: false,
+        isAllowed: false,
+        timingStatusText: 'checkin.no_class_scheduled'.tr(),
+      ));
+      return;
+    }
+
+    final diffMinutes = now.difference(classStart).inMinutes;
+
+    if (diffMinutes >= 0 && diffMinutes <= 15) {
+      emit(state.copyWith(
+        isOccurring: true,
+        isAllowed: true,
+        timingStatusText: 'checkin.on_time'.tr(),
+      ));
+    } else if (diffMinutes > 15 && diffMinutes <= 30) {
+      emit(state.copyWith(
+        isOccurring: true,
+        isAllowed: true,
+        timingStatusText: 'checkin.late'.tr(),
+      ));
+    } else {
+      emit(state.copyWith(
+        isOccurring: true,
+        isAllowed: false,
+        timingStatusText: 'checkin.expired'.tr(),
+      ));
+    }
+  }
+
+  Map<String, int>? _parseTime(String timeStr) {
+    try {
+      final cleanStr = timeStr.replaceAll('h', ':').trim();
+      final parts = cleanStr.split(':');
+      if (parts.length < 2) return null;
+      final hour = int.parse(parts[0].trim());
+      final minute = int.parse(parts[1].trim());
+      return {'hour': hour, 'minute': minute};
+    } catch (_) {
+      return null;
     }
   }
 }

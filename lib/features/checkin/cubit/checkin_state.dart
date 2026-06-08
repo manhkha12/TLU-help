@@ -18,6 +18,12 @@ class CheckInState with _$CheckInState {
     String? filePath,
     double? latitude,
     double? longitude,
+    @Default(false) bool isOccurring,
+    @Default(false) bool isAllowed,
+    @Default('checkin.no_class_scheduled') String timingStatusText,
+    @Default(false) bool isLocationOk,
+    double? gpsDistance,
+    @Default('checkin.checking_permissions') String locationStatusText,
   }) = _CheckInState;
 
   CheckInState._();

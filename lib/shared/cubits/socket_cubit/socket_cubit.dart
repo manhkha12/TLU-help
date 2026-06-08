@@ -15,6 +15,7 @@ class SocketCubit extends Cubit<SocketState> {
   }) : super(SocketState.connecting());
 
   void connect() {
+    disconnect();
     userRepository.initSocket();
     userRepository.socket
       ?..on('connect', _onConnect)
