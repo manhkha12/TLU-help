@@ -24,7 +24,7 @@ class CheckinScreen extends StatefulWidget {
 }
 
 class _CheckinScreenState extends State<CheckinScreen>
-    with BottomNavigationMixin {
+    with BottomNavigationMixin, WidgetsBindingObserver {
   CameraController? _controller;
   String _status = 'checkin.checking_permissions'.tr();
   bool _isPermissionGranted = false;
@@ -41,6 +41,7 @@ class _CheckinScreenState extends State<CheckinScreen>
   @override
   void initState() {
     super.initState();
+    WidgetsBinding.instance.addObserver(this);
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       final cubit = context.read<CheckInCubit>();
       await cubit.fetchActiveSession();
@@ -53,8 +54,44 @@ class _CheckinScreenState extends State<CheckinScreen>
           });
         }
         cubit.checkGPS();
+        if (isFocused && !_isCameraReady) {
+          _initializeCamera();
+        }
       }
     });
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    if (state == AppLifecycleState.resumed && isFocused) {
+      _checkPermissionsAndStartCamera();
+    }
+  }
+
+  Future<void> _checkPermissionsAndStartCamera() async {
+    final cameraGranted = await Permission.camera.isGranted;
+    final locationGranted = await Permission.location.isGranted;
+    if (cameraGranted && locationGranted) {
+      if (mounted) {
+        setState(() {
+          _isPermissionGranted = true;
+          _status = 'checkin.initializing_camera'.tr();
+        });
+      }
+      if (!_isCameraReady) {
+        await _initializeCamera();
+      }
+      if (mounted) {
+        context.read<CheckInCubit>().checkGPS();
+      }
+    } else {
+      if (mounted) {
+        setState(() {
+          _isPermissionGranted = false;
+          _status = 'checkin.permission_required'.tr();
+        });
+      }
+    }
   }
 
   @override
@@ -100,6 +137,59 @@ class _CheckinScreenState extends State<CheckinScreen>
     }
   }
 
+  void _showPermissionDialog() {
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (context) => AlertDialog(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+        title: Row(
+          children: [
+            Icon(
+              Icons.security_rounded,
+              color: context.colors.tluRedColor,
+              size: 28,
+            ),
+            const SizedBox(width: 10),
+            Expanded(
+              child: Text(
+                'checkin.permission_dialog_title'.tr(),
+                style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+              ),
+            ),
+          ],
+        ),
+        content: Text(
+          'checkin.permission_dialog_content'.tr(),
+          style: TextStyle(color: context.colors.black.withOpacity(0.8), fontSize: 14),
+        ),
+        actions: [
+          TextButton(
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+            child: Text(
+              'common.cancel'.tr(),
+              style: TextStyle(color: context.colors.black.withOpacity(0.6)),
+            ),
+          ),
+          ElevatedButton(
+            onPressed: () async {
+              Navigator.of(context).pop();
+              await openAppSettings();
+            },
+            style: ElevatedButton.styleFrom(
+              backgroundColor: context.colors.tluBlueColor,
+              foregroundColor: Colors.white,
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+            ),
+            child: Text('checkin.open_settings'.tr()),
+          ),
+        ],
+      ),
+    );
+  }
+
   Future<void> _requestPermissions() async {
     Map<Permission, PermissionStatus> statuses = await [
       Permission.camera,
@@ -118,6 +208,7 @@ class _CheckinScreenState extends State<CheckinScreen>
     } else {
       if (!mounted) return;
       setState(() => _status = 'checkin.permission_required'.tr());
+      _showPermissionDialog();
     }
   }
 
@@ -270,6 +361,7 @@ class _CheckinScreenState extends State<CheckinScreen>
 
   @override
   void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
     _controller?.dispose();
     super.dispose();
   }
@@ -526,18 +618,26 @@ class _CheckinScreenState extends State<CheckinScreen>
                                     width: double.infinity,
                                     height: context.height * 0.065,
                                     child: ElevatedButton.icon(
-                                      onPressed: _isCameraReady &&
-                                              state.isLocationOk &&
-                                              activeSession != null &&
-                                              state.isAllowed &&
-                                              state.checkinStatus == null
-                                          ? _handleCheckin
-                                          : null,
-                                      icon: const Icon(Icons.face_retouching_natural,
-                                          color: Colors.white),
+                                      onPressed: !_isPermissionGranted
+                                          ? _requestPermissions
+                                          : (_isCameraReady &&
+                                                  state.isLocationOk &&
+                                                  activeSession != null &&
+                                                  state.isAllowed &&
+                                                  state.checkinStatus == null
+                                              ? _handleCheckin
+                                              : null),
+                                      icon: Icon(
+                                        !_isPermissionGranted
+                                            ? Icons.vpn_key_rounded
+                                            : Icons.face_retouching_natural,
+                                        color: Colors.white,
+                                      ),
                                       label: Text(
-                                        'checkin.confirm_button'.tr(),
-                                        style: TextStyle(
+                                        !_isPermissionGranted
+                                            ? 'checkin.grant_permissions_button'.tr()
+                                            : 'checkin.confirm_button'.tr(),
+                                        style: const TextStyle(
                                             fontSize: 16,
                                             fontWeight: FontWeight.w800,
                                             letterSpacing: 1.1),

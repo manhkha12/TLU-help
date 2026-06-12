@@ -163,7 +163,11 @@
     "on_time": "Đúng giờ",
     "late": "Điểm danh muộn",
     "expired": "Đã quá thời gian điểm danh",
-    "invalid_time_slot": "Khung giờ học không hợp lệ"
+    "invalid_time_slot": "Khung giờ học không hợp lệ",
+    "permission_dialog_title": "Cần cấp quyền truy cập",
+    "permission_dialog_content": "Để thực hiện điểm danh, ứng dụng cần quyền truy cập vào Camera (chụp ảnh khuôn mặt) và Vị trí (xác thực vị trí TLU). Vui lòng cấp quyền trong Cài đặt của thiết bị.",
+    "open_settings": "Mở Cài đặt",
+    "grant_permissions_button": "CẤP QUYỀN TRUY CẬP"
   },
   "chat": {
     "title": "Tin nhắn",
