@@ -104,4 +104,3 @@ lib/
 
 ---
 
-Chúc các bạn phát triển và vận hành dự án thành công! Mọi đóng góp hoặc báo cáo lỗi vui lòng tạo Issue trên hệ thống quản lý mã nguồn.
